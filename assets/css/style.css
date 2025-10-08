@@ -1,6 +1,54 @@
+:root { 
+    --primary-blue: #2f24b5 ;
+    --text-color: #000 ; 
+    --background-color: #fff ;
+}
+
+@font-face {
+  font-family: "Aeonik";
+  src: url("../fonts/fonnts.com-Aeonik-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aeonik";
+  src: url("../fonts/fonnts.com-Aeonik-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Default text styling */
+body {
+  font-family: "Aeonik", sans-serif;
+}
+
+.main-container { 
+    width: 90%;
+    margin: 0 auto;
+}
+
+
 .nav-bar { 
     display: flex;
     justify-content: space-between;
+}
+
+.login-right h2 { 
+    font-weight: 700;
+} 
+
+.login-right input { 
+    width: 100%; 
+    background-color: #d9d9d9; 
+    border: none; 
+    border-radius: 20px; 
+    padding: 10px;
+}
+
+.login-right .submit-btn { 
+    background-color: #b0b0b0; 
+    font-weight: 700;
 }
 
 @media only screen and (min-width: 576px) { 
@@ -8,5 +56,37 @@
         flex-direction: column;
         justify-content: flex-start;
         height: 100vh; 
+    }
+
+    .login-container { 
+        display: flex; 
+        align-items: center;
+    }
+
+    .login-row { 
+        display: flex; 
+    }
+
+    .login-left { 
+        height: 95vh; 
+        background-color: #d9d9d9;
+        border-radius: 20px;
+        width: 50vw;
+        margin-right: 6em;
+    }
+
+    .login-right { 
+        width: 25vw;
+    }
+    
+    .login-right .img-container { 
+        margin-bottom: 15em; 
+        width: 100%; 
+        display: flex; 
+        justify-content: center;
+    }
+
+    .login-right img { 
+        width: 8%;
     }
 }

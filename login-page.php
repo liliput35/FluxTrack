@@ -24,20 +24,36 @@
     <title>Log In</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="./assets/css/style.css">
+    
 </head>
 <body>
-    <!-- MJ LOG IN -->
-    <h2>Login</h2>
-    <form method="POST">
-    <label for="username">Username:</label>
-    <input type="text" name="username" required><br><br>
+    <!-- CIOCON STYLING  10-8 -->
+    <div class="vh-100 login-container main-container">
+      <div class="login-row">
+        <div class="login-left"></div>
+
+        <div class="login-right">
+          <div class="img-container">
+            <img src="./assets/images/Vector.svg" alt="">
+          </div>
+
+          <!-- MJ LOG IN  10-7 -->
+          <h2>Log In</h2>
+          <p>Enter your username and password to access your account </p>
+          <form method="POST">
+            <label for="username">Username</label> <br>
+            <input type="text" name="username" placeholder="Enter your username" required><br><br>
+            
+            <label for="password">Password</label> <br>
+            <input type="password" name="password" placeholder="Enter your password" required><br><br>
+            
+            <input type="submit" value="Login" class="submit-btn">
+          </form>
+        </div>
+      </div>
+    </div>
     
-    <label for="password">Password:</label>
-    <input type="password" name="password" required><br><br>
-    
-    <input type="submit" value="Login">
-    </form>
 </body>
 
 
