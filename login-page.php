@@ -7,7 +7,8 @@
         $password = $_POST['password'] ?? '';
     
         if ($username === $valid_username && $password === $valid_password) {
-          echo "<h2>Welcome, $username!</h2>";
+          echo "<h2>Welcome, $username!</h2> 
+                <a href='./dashboard.php'>to home</a>";
           exit;
         } else {
           echo "<h2>Invalid username or password.</h2>";
