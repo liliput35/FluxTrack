@@ -14,7 +14,7 @@
         <?php include('./includes/navbar.php') ?>
         <div class="col-sm-10">
             <h2>Main area</h2>
-            <p>test chua was here</p>
+            <p>test chua was here test</p>
         </div>
     </div>
 </body>
