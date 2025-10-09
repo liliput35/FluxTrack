@@ -35,7 +35,7 @@
 
         <div class="login-right">
           <div class="img-container">
-            <img src="./assets/images/Vector.svg" alt="">
+            <img src="./assets/images/logo.png" alt="">
           </div>
 
           <!-- MJ LOG IN  10-7 -->
