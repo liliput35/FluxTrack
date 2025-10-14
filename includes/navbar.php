@@ -1,11 +1,23 @@
-<div class="nav-bar col-sm-2">
-    <h3>FluxTrack</h3>
+<div class="nav-bar collapsed">
+    <div class="main-container">
 
-    <nav>
-        <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">Active Incidents</a></li>
-            <li><a href="">Account</a></li>
-        </ul>
-    </nav>
+        <div class="nav-header">
+            <img src="././assets/images/white-logo.png" alt="" class="nav-logo">
+        </div>
+        
+
+        <nav>
+            <ul>
+                <li><a href=""><img src="././assets/images/home-icon.png" alt=""><span>Home</span></a></li>
+                <li><a href=""><img src="././assets/images/reports-icon.png" alt=""><span>Reports</span></a></li>
+                <li><a href=""><img src="././assets/images/incidents-icon.png" alt=""><span>Incidents</span></a></li>
+                <li><a href=""><img src="././assets/images/history-icon.png" alt=""><span>History</span></a></li>
+            </ul>
+
+            <ul class="bot-nav">
+                <li><a href=""><img src="././assets/images/accounts-icon.png" alt=""><span>Juan Cruz</span></a></li>
+            </ul>
+        </nav>
+    </div>
+    
 </div>

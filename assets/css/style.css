@@ -1,7 +1,8 @@
 :root { 
-    --primary-blue: #2f24b5 ;
-    --text-color: #000 ; 
-    --background-color: #fff ;
+  --primary-blue: #244db5;
+  --lighter-primary: #476ac1;
+  --text-color: #000;
+  --background-color: #fff;
 }
 
 @font-face {
@@ -18,75 +19,205 @@
   font-style: normal;
 }
 
-/* Default text styling */
+/* DEFAULT / MOBILE STYLES (below 768px) */
 body {
   font-family: "Aeonik", sans-serif;
 }
 
 .main-container { 
-    width: 90%;
-    margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
 }
 
-
-.nav-bar { 
-    display: flex;
-    justify-content: space-between;
+a { 
+  color: white;
 }
 
+ul { 
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Layout wrapper */
+.layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Main content always visible */
+.main-content {
+  flex: 1;
+  padding: 1em;
+  transition: margin-left 0.3s;
+}
+
+/* HIDE NAVBAR COMPLETELY ON MOBILE */
+.nav-bar {
+  display: none;
+}
+
+/* LOGIN PAGE – applies both mobile and desktop */
 .login-right h2 { 
-    font-weight: 700;
-} 
+  font-weight: 700;
+}
 
 .login-right input { 
-    width: 100%; 
-    background-color: #d9d9d9; 
-    border: none; 
-    border-radius: 20px; 
-    padding: 10px;
+  width: 100%;
+  background-color: #d9d9d9;
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
 }
 
-.login-right .submit-btn { 
-    background-color: #b0b0b0; 
-    font-weight: 700;
+.login-right .submit-btn {
+  background-color: #b0b0b0;
+  font-weight: 700;
 }
 
-@media only screen and (min-width: 576px) { 
-    .nav-bar { 
-        flex-direction: column;
-        justify-content: flex-start;
-        height: 100vh; 
-    }
+.login-right .img-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5em;
+  padding: 1em 0;
+}
 
-    .login-container { 
-        display: flex; 
-        align-items: center;
-    }
+.login-right img {
+  width: 8%;
+}
 
-    .login-row { 
-        display: flex; 
-    }
+.login-right .login-noacc {
+  margin-top: 3em;
+}
 
-    .login-left { 
-        height: 95vh; 
-        background-color: #d9d9d9;
-        border-radius: 20px;
-        width: 50vw;
-        margin-right: 6em;
-    }
+/* CREATE ACCOUNT shared styles */
+.create-name-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .login-right { 
-        width: 25vw;
-    }
-    
-    .login-right .img-container { 
-        margin-bottom: 15em; 
-        width: 100%; 
-        display: flex; 
-        justify-content: center;
-    }
+.create-name-group .first-name {
+  margin-right: 1em;
+}
 
-    .login-right img { 
-        width: 8%;
-    }
+.create-noacc {
+  margin-top: 3em;
+}
+
+/* ============================= */
+/* DESKTOP & TABLET (min-width: 768px) */
+/* ============================= */
+@media only screen and (min-width: 768px) {
+
+  /* Show navbar again */
+  .nav-bar {
+    display: block;
+    padding: 1em 0;
+    width: 260px;
+    transition: width 0.3s ease;
+    overflow: hidden;
+  }
+
+  .nav-bar.collapsed {
+    width: 100px;
+    margin-left: 1em;
+  }
+
+  .nav-bar.collapsed:hover {
+    width: 220px;
+  }
+
+  .nav-bar .main-container {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    background-color: var(--lighter-primary);
+    border-radius: 20px;
+    padding: 1em;
+  }
+
+  .nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid 1px #aeaeae;
+    padding-bottom: 2em;
+  }
+
+  nav {
+    margin-top: 5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  nav ul li {
+    margin-bottom: 3em;
+  }
+
+  nav ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  nav .bot-nav {
+    border-top: solid 1px #aeaeae;
+    padding-top: 1em;
+  }
+
+  .nav-logo {
+    width: 30px;
+    transition: width 0.3s ease;
+  }
+
+  nav ul li a img {
+    width: 20px;
+  }
+
+  .nav-bar.collapsed nav ul li a span {
+    display: none;
+  }
+
+  .nav-bar.collapsed:hover nav ul li a span {
+    display: inline;
+    margin-left: 1em;
+  }
+
+  /* Desktop login layout */
+  .login-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .login-row {
+    display: flex;
+  }
+
+  .login-left {
+    height: 95vh;
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    width: 50vw;
+    margin-right: 6em;
+  }
+
+  .login-right {
+    width: 25vw;
+  }
+
+  .login-right .img-container {
+    margin-bottom: 15em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .login-right img {
+    width: 8%;
+  }
 }
