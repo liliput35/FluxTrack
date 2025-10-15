@@ -179,6 +179,13 @@ ul {
   margin: 0 auto;
 }
 
+.page-heading { 
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-size: 3em;
+  color: #a3a3a3;
+}
+
 .page-info { 
   display: flex ;
   align-items: center;
@@ -261,6 +268,54 @@ ul {
 
 .average-time p { 
   color: #a3a3a3; 
+}
+
+.table-search-group { 
+  margin-bottom: 1em;
+}
+
+.table-search-group .top-search { 
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  margin-bottom: 0.5em;
+}
+
+.table-search-group input { 
+  border-radius: 25px; 
+  border: solid 1px #e3e3e3;
+  background-color: #f8f8f8; 
+  font-size: 1em; 
+  padding: 0.5em 1em; 
+  width: 60%;
+}
+
+.table-search-group .filter-date { 
+  border: solid 1px var(--lighter-primary);
+  color: var(--primary-blue); 
+  padding: 0.5em 1em; 
+  border-radius: 10px;
+}
+
+.bot-search { 
+  display: flex;
+  justify-content: flex-end; 
+  margin-bottom: 1em;
+}
+
+.bot-search button { 
+  color: var(--background-color);
+  background-color: var(--lighter-primary);
+  border: none;
+  margin-left: 0.5em; 
+  padding: 0.25em 0.75em;
+  border-radius: 5px;
+}
+
+.bot-search .edit-btn { 
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: solid 1px var(--lighter-primary);
 }
 
 /*MOBILE TABLE STYLES*/
@@ -504,6 +559,21 @@ ul {
     grid-template-columns: 1fr 1fr; 
     grid-column-gap: 1em;
     width: 80%;
+  }
+
+  .table-search-group { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .table-search-group .top-search input { 
+    width: 700px; 
+    margin-right: 0.5em;
+  }
+
+  .table-search-group .top-search .filter-date { 
+    width: 30%;
   }
 
   /*DESKTOP TABLE STYLES*/

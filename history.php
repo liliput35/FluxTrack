@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>History</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
@@ -22,65 +22,10 @@
             <?php include('./includes/mobile-header.php') ?>
             
             <div class="main-content-container">
-                <p class="page-info"> <img src="./assets/images/blue-home-icon.png" alt=""><span>Home  /  Dashboard</span></p>
+                <p class="page-info"> <img src="./assets/images/blue-home-icon.png" alt=""><span>Reports  /  Incidents</span></p>
+
+                <h2 class="page-heading">Completed Reports</h2>
                 
-                <div class="dashboard-cards">
-                    <div class="recent-incident dash-card dash-card-left">
-                        <h4>Recent Incident</h4>
-                        <h2>Air Conditioning Failure</h2>
-
-                        <div class="recent-bot-card ">
-                            <div class="recent-left">
-                                <p class="recent-labels">Reporter Name</p>
-                                <p>Miguel Reyes</p>
-
-                                <p class="recent-labels">Status</p>
-                                <p>In Progress</p>
-
-                                <p class="recent-labels">Remark</p>
-                                <p>Fixed wiring of air conditioner</p>
-                            </div>
-                            <div class="recent-right">
-                                <p class="recent-labels">Date</p>
-                                <p>Oct 11, 2025</p>
-
-                                <p class="recent-labels">Time</p>
-                                <p>10:45 AM</p>
-
-                                <p class="recent-labels">Location</p>
-                                <p>1st Floor, Grocery</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dash-card-right">
-                        <div class="total-incidents dash-card">
-                            <h4>Total Incidents this Month</h4>
-                            <h1 class="text-center">42</h1>
-                            <p class="red-text">up 16% vs September</p>
-                            <p class="total-labels">Most Reported</p>
-                            <p>Wet Floor (28%)</p>
-                            <p class="total-labels">Peak Day</p>
-                            <p>Oct 12 (7 Incidents)</p>
-                        </div>
-
-                        <div class="right-right-col">
-                            <div class="percentage dash-card">
-                                <h4>Percentage of Resolved Incidents</h4>
-                                <h2>78%</h2>
-                                <p class="green-text">12% improvement vs September</p>
-                            </div>
-                            <div class="average-time dash-card">
-                                <h4>Average Response Time</h4>
-                                <h2>2h 15m</h2>
-                                <p>Fastest: <span class="green-text">35m</span></p>
-                                <p>Slowest: <span class="red-text">6h</span></p>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
 
                 <div class="table-search-group">
                     <div class="top-search">
