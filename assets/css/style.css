@@ -33,6 +33,10 @@ body {
 a { 
   color: white; 
   text-decoration: none;
+} 
+
+p { 
+  margin: 0;
 }
 
 ul { 
@@ -48,6 +52,23 @@ ul {
 
 .nav-bar .main-container nav ul li a:hover span { 
   font-weight: bold;
+}
+
+/*MOBILE HEADER*/
+.mobile-header { 
+  background-color: var(--lighter-primary);
+  width: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  padding: 1em 0; 
+  margin-bottom: 1em;
+}
+
+.mobile-header img { 
+  width: 8%;
 }
 
 /*MOBILE NAVBAR*/
@@ -153,6 +174,95 @@ ul {
   color: var(--primary-blue);
 }
 
+.main-content-container { 
+  width: 90%;
+  margin: 0 auto;
+}
+
+.page-info { 
+  display: flex ;
+  align-items: center;
+}
+
+.page-info span { 
+  color: var(--primary-blue); 
+  margin-left: 0.5em;
+}
+
+.page-info img { 
+  width: 20px;
+}
+
+/*DASHBOARD CARDS*/
+.dashboard-cards { 
+  margin-bottom: 2em;
+  margin-top: 2em;
+}
+
+.dash-card-right { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-column-gap: 1em;
+}
+
+.dash-card { 
+  border: solid 2px var(--lighter-primary);
+  border-radius: 25px;
+  padding: 1rem;
+  margin-bottom: 1em;
+}
+
+.dash-card h4 { 
+  color: var(--lighter-primary);
+}
+
+.recent-bot-card { 
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.recent-incident .recent-labels { 
+  color: var(--lighter-primary);
+  font-size: smaller; 
+  margin-top: 1em;
+}
+
+.total-incidents h1 { 
+  font-size: 7em;
+}
+
+.total-labels { 
+  font-size: smaller;
+  color: #a3a3a3;
+  margin-top: 1em;
+}
+
+.red-text { 
+  color: #bd5151;
+} 
+
+.green-text { 
+  color: #51bd75;
+}
+
+.right-right-col { 
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.right-right-col h4 { 
+  font-size: 1.25em;
+}
+
+.right-right-col h2 { 
+  font-size: 3em;
+}
+
+.average-time p { 
+  color: #a3a3a3; 
+}
+
 /*MOBILE TABLE STYLES*/
 .incident-table thead {
   display: none;
@@ -171,30 +281,75 @@ ul {
   padding: 1rem;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
+  border: solid 2px var(--primary-blue);
 
-.incident-table td,
-.incident-table th[scope="row"] {
-  display: flex;
-  padding: 0.5rem 0;
-  flex-direction: column;
-}
-
-.incident-table td::before,
-.incident-table th[scope="row"]::before {
-  content: attr(data-label);
-  font-weight: 700;
-  color: #444;
-  margin-right: 1rem;
-  flex-basis: 40%;
-  text-align: left;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
 
 .incident-table td,
 .incident-table th {
-  flex-basis: 60%;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: none;
+}
+
+.incident-table th[scope="row"] { 
+  display: none;
+}
+
+.incident-table tr td:nth-child(2) {
+  grid-area: 1 / 1 / 2 / 5;
+}
+
+.incident-table tr td:nth-child(3) {
+  grid-area: 2 / 1 / 3 / 3;
+}
+
+.incident-table tr td:nth-child(4) {
+  grid-area: 2 / 3 / 3 / 4;
+}
+
+.incident-table tr td:nth-child(5) {
+  grid-area: 2 / 4 / 3 / 5;
+}
+
+.incident-table tr td:nth-child(6) {
+  grid-area: 3 / 1 / 4 / 3;
+}
+
+.incident-table tr td:nth-child(7) {
+  grid-area: 3 / 3 / 4 / 5;
+}
+
+.incident-table tr td:nth-child(8) {
+  grid-area: 4 / 1 / 5 / 5;
+}
+
+
+.incident-table td{
+  display: flex;
+  padding: 0.5rem 0;
+  flex-direction: column; 
+} 
+
+.incident-table td[data-label="Incident Type"]{ 
+  font-size: 1.5em; 
+  color: var(--primary-blue);
+}
+
+.incident-table td::before {
+  content: attr(data-label);
+  font-weight: 400;
+  color: #747474;
+  text-align: left; 
+  font-size: smaller;
+}
+
+.incident-table td[data-label="Incident Type"]::before { 
+  display: none;
+  content: none;
 }
 
 /* Remove bottom border on last row item */
@@ -209,6 +364,10 @@ ul {
 
   /*hide mobile nav*/ 
   .mobile-nav-bar { 
+    display: none;
+  }
+
+  .mobile-header { 
     display: none;
   }
 
@@ -302,6 +461,11 @@ ul {
     transition: margin-left 0.3s;
   }
 
+  .main-content-container { 
+    width: 100%;
+    margin: 0 auto;
+  }
+
   /* Desktop login layout */
   .login-container {
     display: flex;
@@ -335,6 +499,13 @@ ul {
     width: 8%;
   }
 
+  .dashboard-cards { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-column-gap: 1em;
+    width: 80%;
+  }
+
   /*DESKTOP TABLE STYLES*/
   .incident-table {
     display: table;
@@ -353,8 +524,13 @@ ul {
     display: table-row;
     margin: 0;
     padding: 0;
-    box-shadow: none;
+    border: none;
   }
+
+  .incident-table .header-row { 
+    background-color: #c4cfeb;
+  }
+
 
   .incident-table th,
   .incident-table td, .incident-table th[scope="row"] {
@@ -372,5 +548,10 @@ ul {
 
   .incident-table td:last-child {
     border-bottom: 1px solid #dee2e6;
+  }
+
+  .incident-table td[data-label="Incident Type"]{ 
+    font-size: 1em; 
+    color: var(--text-color);
   }
 }
