@@ -3,6 +3,7 @@
   --lighter-primary: #476ac1;
   --text-color: #000;
   --background-color: #fff;
+  --secondary-color: #d8f35f;
 }
 
 @font-face {
@@ -30,7 +31,8 @@ body {
 }
 
 a { 
-  color: white;
+  color: white; 
+  text-decoration: none;
 }
 
 ul { 
@@ -39,41 +41,78 @@ ul {
   padding: 0;
 }
 
-/* Layout wrapper */
-.layout {
-  display: flex;
-  width: 100%;
-  min-height: 100vh;
-}
-
-/* Main content always visible */
-.main-content {
-  flex: 1;
-  padding: 1em;
-  transition: margin-left 0.3s;
-}
-
 /* HIDE NAVBAR COMPLETELY ON MOBILE */
 .nav-bar {
   display: none;
 }
 
+.nav-bar .main-container nav ul li a:hover span { 
+  font-weight: bold;
+}
+
+/*MOBILE NAVBAR*/
+.mobile-nav-bar { 
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1em; 
+  z-index: 999; 
+}
+
+.mobile-nav-bar .main-container { 
+  background-color: var(--lighter-primary); 
+  padding: 1em; 
+  border-radius: 50px; 
+  width: 90%;
+}
+
+.mobile-nav-bar nav ul { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mobile-nav-bar nav ul li a { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+}
+
+.mobile-nav-bar nav ul li a:hover span { 
+  font-weight: bold;
+}
+
+.mobile-nav-bar nav ul li a img { 
+  width: 20px;
+  max-height: 20px;
+}
+
 /* LOGIN PAGE – applies both mobile and desktop */
 .login-right h2 { 
   font-weight: 700;
+  color: var(--primary-blue);
+}
+
+.login-right label { 
+  color: var(--primary-blue);
 }
 
 .login-right input { 
   width: 100%;
-  background-color: #d9d9d9;
-  border: none;
+  background-color: #fff;
+  border: solid 2px #d9d9d9;
   border-radius: 15px;
   padding: 10px;
 }
 
 .login-right .submit-btn {
-  background-color: #b0b0b0;
+  background-color: var(--primary-blue);
   font-weight: 700;
+  color: var(--background-color);
 }
 
 .login-right .img-container {
@@ -91,6 +130,10 @@ ul {
   margin-top: 3em;
 }
 
+.login-right .login-noacc span a { 
+  color: var(--primary-blue);
+}
+
 /* CREATE ACCOUNT shared styles */
 .create-name-group {
   display: flex;
@@ -106,10 +149,68 @@ ul {
   margin-top: 3em;
 }
 
+.create-noacc span a { 
+  color: var(--primary-blue);
+}
+
+/*MOBILE TABLE STYLES*/
+.incident-table thead {
+  display: none;
+}
+
+.incident-table, 
+.incident-table tbody, 
+.incident-table tr, 
+.incident-table td, 
+.incident-table th {
+  display: block;
+}
+
+.incident-table tr {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.incident-table td,
+.incident-table th[scope="row"] {
+  display: flex;
+  padding: 0.5rem 0;
+  flex-direction: column;
+}
+
+.incident-table td::before,
+.incident-table th[scope="row"]::before {
+  content: attr(data-label);
+  font-weight: 700;
+  color: #444;
+  margin-right: 1rem;
+  flex-basis: 40%;
+  text-align: left;
+}
+
+.incident-table td,
+.incident-table th {
+  flex-basis: 60%;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Remove bottom border on last row item */
+.incident-table td:last-child {
+  border-bottom: none;
+}
+
 /* ============================= */
 /* DESKTOP & TABLET (min-width: 768px) */
 /* ============================= */
 @media only screen and (min-width: 768px) {
+
+  /*hide mobile nav*/ 
+  .mobile-nav-bar { 
+    display: none;
+  }
 
   /* Show navbar again */
   .nav-bar {
@@ -146,7 +247,7 @@ ul {
     padding-bottom: 2em;
   }
 
-  nav {
+  .nav-bar nav {
     margin-top: 5em;
     display: flex;
     flex-direction: column;
@@ -155,18 +256,17 @@ ul {
     height: 100%;
   }
 
-  nav ul li {
+  .nav-bar nav ul li {
     margin-bottom: 3em;
   }
 
-  nav ul li a {
+  .nav-bar nav ul li a {
     display: flex;
     align-items: center;
     text-decoration: none;
   }
 
-  nav .bot-nav {
-    border-top: solid 1px #aeaeae;
+  .nav-bar nav .bot-nav {
     padding-top: 1em;
   }
 
@@ -175,7 +275,7 @@ ul {
     transition: width 0.3s ease;
   }
 
-  nav ul li a img {
+  .nav-bar nav ul li a img {
     width: 20px;
   }
 
@@ -186,6 +286,20 @@ ul {
   .nav-bar.collapsed:hover nav ul li a span {
     display: inline;
     margin-left: 1em;
+  }
+
+    /* Layout wrapper */
+  .layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  /* Main content always visible */
+  .main-content {
+    flex: 1;
+    padding: 1em;
+    transition: margin-left 0.3s;
   }
 
   /* Desktop login layout */
@@ -200,7 +314,7 @@ ul {
 
   .login-left {
     height: 95vh;
-    background-color: #d9d9d9;
+    background-color: var(--lighter-primary);
     border-radius: 20px;
     width: 50vw;
     margin-right: 6em;
@@ -219,5 +333,44 @@ ul {
 
   .login-right img {
     width: 8%;
+  }
+
+  /*DESKTOP TABLE STYLES*/
+  .incident-table {
+    display: table;
+    width: 100%;
+  }
+
+  .incident-table thead {
+    display: table-header-group;
+  }
+
+  .incident-table tbody {
+    display: table-row-group;
+  }
+
+  .incident-table tr {
+    display: table-row;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .incident-table th,
+  .incident-table td, .incident-table th[scope="row"] {
+    display: table-cell;
+    padding: 0.5rem;
+    border-bottom: 1px solid #dee2e6;
+    text-align: left;
+  }
+
+  .incident-table td::before,
+  .incident-table th::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  .incident-table td:last-child {
+    border-bottom: 1px solid #dee2e6;
   }
 }
