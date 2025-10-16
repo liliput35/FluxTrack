@@ -22,7 +22,7 @@
             <?php include('./includes/mobile-header.php') ?>
             
             <div class="main-content-container">
-                <p class="page-info"> <img src="./assets/images/blue-home-icon.png" alt=""><span>Reports  /  Incidents</span></p>
+                <p class="page-info"> <img src="./assets/images/blue-history-icon.png" alt=""><span>History  /  Incidents</span></p>
 
                 <h2 class="page-heading">Completed Reports</h2>
                 
