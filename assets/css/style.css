@@ -414,6 +414,14 @@ ul {
   border-bottom: none;
 }
 
+.edit-cell a {
+  display: none;
+}
+
+.edit-mode .edit-cell a {
+  display: inline-block;
+}
+
 /*ACCOUNT PAGE*/
 .account-page .account-heading { 
   display: flex;
