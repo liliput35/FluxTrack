@@ -15,7 +15,7 @@
             </ul>
 
             <ul class="bot-nav">
-                <li><a href=""><img src="././assets/images/accounts-icon.png" alt=""><span>Juan Cruz</span></a></li>
+                <li><a href="././account.php"><img src="././assets/images/accounts-icon.png" alt=""><span>Juan Cruz</span></a></li>
             </ul>
         </nav>
     </div>

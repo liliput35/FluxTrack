@@ -412,6 +412,97 @@ ul {
   border-bottom: none;
 }
 
+/*ACCOUNT PAGE*/
+.account-page .account-heading { 
+  display: flex;
+  width: 100%;
+  margin-top: 2em;
+  margin-bottom: 3em;
+  align-items: center;
+}
+
+.account-heading img { 
+  width: 50px; 
+  height: 50px;
+  margin-right: 1em;
+}
+
+.account-heading p { 
+  font-size: smaller;
+  color: #a3a3a3;
+}
+
+.account-heading input { 
+  width: 300px; 
+  background-color: #f4f4f4;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+}
+
+.account-page h2 { 
+  color: var(--lighter-primary);
+  border-bottom: solid 1px #929292;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+}
+
+.form-group { 
+  margin-bottom: 1em;
+}
+
+.form-group p { 
+  color: #a3a3a3;
+  font-size: smaller;
+  margin-bottom: 0.5em;
+}
+
+.form-group input { 
+  background-color: #f4f4f4;
+  padding: 0.25em 1em;
+  width: 50%;
+  border: solid 1px var(--lighter-primary);
+  border-radius: 5px;
+}
+
+.info-name input { 
+  width: 100%;
+}
+
+.account-page .info-name { 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.account-page .personal-info { 
+  margin-bottom: 4em;
+}
+
+.account-page button { 
+  border: none;
+  border-radius: 10px;
+  padding: 0.5em 1.5em;
+  background-color: var(--lighter-primary);
+  color: var(--background-color);
+  font-size: 0.8em;
+}
+
+.personal-info button { 
+  float: right;
+}
+
+.account-creds { 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.account-creds h4 { 
+  margin-bottom: 0;
+}
+
 /* ============================= */
 /* DESKTOP & TABLET (min-width: 768px) */
 /* ============================= */
@@ -623,5 +714,31 @@ ul {
   .incident-table td[data-label="Incident Type"]{ 
     font-size: 1em; 
     color: var(--text-color);
+  }
+
+  /*ACCOUNT PAGE*/
+
+  .account-page .main-content-container { 
+    width: 80%;
+    margin: 0;
+    margin-left: 2em;
+  }
+
+  .account-heading img { 
+    width: 5% ;
+    height: auto;
+  }
+
+  .account-heading p { 
+    font-size: 1em; 
+  }
+
+  .account-heading input { 
+    font-size: 1.5em;
+    border-radius: 25px;
+  }
+
+  .account-page .personal-info { 
+    width: 50%;
   }
 }
