@@ -38,7 +38,7 @@
 
                     <div class="bot-search">
                         <button class="edit-btn">Edit</button>
-                        <button>+</button>
+                        <a href="./add-incident.php">+</a>
                     </div>
                 </div>
                 

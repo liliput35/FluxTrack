@@ -38,7 +38,6 @@
 
                     <div class="bot-search">
                         <button class="edit-btn">Edit</button>
-                        <button>+</button>
                     </div>
                 </div>
                 
