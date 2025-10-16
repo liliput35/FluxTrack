@@ -92,7 +92,7 @@
                     </div>
 
                     <div class="bot-search">
-                        <button class="edit-btn">Edit</button>
+                        <button class="edit-btn" id="toggleEditMode">Edit</button>
                         <a href="./add-incident.php">+</a>
                     </div>
                 </div>
@@ -108,6 +108,7 @@
                         <th scope="col">Time</th>
                         <th scope="col">Status</th>
                         <th scope="col">Remarks</th>
+                        <th class="edit-col"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -119,7 +120,8 @@
                         <td data-label="Time">5:30 PM</td>
                         <td data-label="Location">Main Stage</td>
                         <td data-label="Status">Resolved</td>
-                        <td data-label="Remarks">Sound system reset successfully</td>   
+                        <td data-label="Remarks">Sound system reset successfully</td> 
+                        <td class="edit-cell"></td>   
                     </tr>
                     <tr>
                         <th scope="row" data-label="No">2</th>
@@ -130,6 +132,7 @@
                         <td data-label="Location">Gate 2</td>
                         <td data-label="Status">Ongoing</td>
                         <td data-label="Remarks">First aid team on standby</td> 
+                        <td class="edit-cell"></td> 
                     </tr>
                     <tr>
                         <th scope="row" data-label="No">3</th>
@@ -140,6 +143,7 @@
                         <td data-label="Location">Food Court</td>
                         <td data-label="Status">Resolved</td>
                         <td data-label="Remarks">Item found and returned</td>   
+                        <td class="edit-cell"></td> 
                     </tr>
                     <tr>
                         <th scope="row" data-label="No">4</th>
@@ -149,7 +153,8 @@
                         <td data-label="Time">7:05 PM</td>
                         <td data-label="Location">Main Hall</td>
                         <td data-label="Status">Pending</td>
-                        <td data-label="Remarks">Security investigating</td>    
+                        <td data-label="Remarks">Security investigating</td>  
+                        <td class="edit-cell"></td>   
                     </tr>
                     <tr>
                         <th scope="row" data-label="No">5</th>
@@ -159,7 +164,8 @@
                         <td data-label="Time">7:25 PM</td>
                         <td data-label="Location">Restroom Area</td>
                         <td data-label="Status">Resolved</td>
-                        <td data-label="Remarks">First aid administered</td>    
+                        <td data-label="Remarks">First aid administered</td> 
+                        <td class="edit-cell"></td>    
                     </tr>
                     </tbody>
                 </table>
@@ -171,5 +177,6 @@
         
 </body>
 
+<script src="./assets/js/main.js"></script>
 
 <?php include('./includes/footer.php') ?>
