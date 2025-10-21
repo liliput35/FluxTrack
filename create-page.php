@@ -43,7 +43,7 @@
             <input type="submit" value="Create Account" class="submit-btn">
           </form>
 
-          <p class="create-noacc text-center">Already have an account? <span><a href="">Log In</a></span></p> 
+          <p class="create-noacc text-center">Already have an account? <span><a href="./login-page.php">Log In</a></span></p> 
           
 
         </div>
