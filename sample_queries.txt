@@ -1,0 +1,13 @@
+Javelosa - VIEW INCIDENTS 
+
+SELECT * FROM Incidents;
+
+
+
+Jaud - VIEW COMPLETED INCIDENTS
+
+SELECT * FROM Incidents WHERE Status = "Resolved" ;
+
+
+
+Chua - LOGIN VALIDATION
