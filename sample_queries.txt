@@ -1,13 +1,52 @@
 Javelosa - VIEW INCIDENTS 
 
-SELECT * FROM Incidents;
+    SELECT * FROM incidents ORDER BY date DESC;
 
+    SELECT * FROM incidents ORDER BY date DESC LIMIT 5;
 
 
 Jaud - VIEW COMPLETED INCIDENTS
 
-SELECT * FROM Incidents WHERE Status = "Resolved" ;
+    SELECT * FROM incidents WHERE Status = "Resolved" ;
 
 
 
 Chua - LOGIN VALIDATION
+
+    SELECT * 
+    FROM users 
+    WHERE username = 'marias' 
+    AND password = 'password123';
+
+
+Torres - CREATE ACCOUNT
+
+    INSERT INTO users (full_name, username, password, role)
+    VALUES ('Maria Santos', 'marias', 'password123', 'Employee');
+
+
+Gomez - CREATE INCIDENT 
+
+    INSERT INTO incidents (user_id, incident_type, location, date, time, status, remarks)
+    VALUES (1, 'Wet Floor', '3rd Floor', '2025-09-20', '11:11:00', 'Ongoing', 'Notified');
+
+
+Ciocon - EDIT INCIDENT 
+
+    UPDATE incidents
+    SET status = 'Resolved',
+        remarks = 'Issue fixed and verified.'
+    WHERE incident_id = 5;
+
+    INSERT INTO incident_updates (incident_id, user_id, update_text, status_change, updated_at)
+    VALUES (5, 2, 'Incident resolved by admin review.', 'Resolved', NOW()); 
+
+
+
+TOTAL INCIDENTS THIS MONTH 
+
+    SELECT COUNT(*) AS total 
+    FROM incidents 
+    WHERE MONTH(date) = MONTH(CURRENT_DATE()) 
+    AND YEAR(date) = YEAR(CURRENT_DATE());
+
