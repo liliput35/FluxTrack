@@ -7,7 +7,7 @@ Javelosa - VIEW INCIDENTS
 
 Jaud - VIEW COMPLETED INCIDENTS
 
-    SELECT * FROM incidents WHERE Status = "Resolved" ;
+    SELECT * FROM incidents WHERE status = "Resolved" ;
 
 
 
@@ -47,6 +47,23 @@ TOTAL INCIDENTS THIS MONTH
 
     SELECT COUNT(*) AS total 
     FROM incidents 
-    WHERE MONTH(date) = MONTH(CURRENT_DATE()) 
-    AND YEAR(date) = YEAR(CURRENT_DATE());
+    WHERE month(date) = MONTH(CURRENT_DATE()) 
+    AND year(date) = YEAR(CURRENT_DATE());
 
+
+TOTAL UNRESOLVED INCIDENTS 
+
+    SELECT COUNT(*) AS total_unresolved 
+    FROM incidents 
+    WHERE month(date) = month(CURRENT_DATE()) 
+    AND year(date) = year(CURRENT_DATE()) 
+    AND status != 'Resolved';
+
+
+TOTAL RESOLVED INCIDENTS 
+
+    SELECT COUNT(*) AS total_unresolved 
+    FROM incidents 
+    WHERE month(date) = month(CURRENT_DATE()) 
+    AND year(date) = year(CURRENT_DATE()) 
+    AND status = 'Resolved';
