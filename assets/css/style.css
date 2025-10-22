@@ -45,6 +45,18 @@ ul {
   padding: 0;
 }
 
+.ongoing-incident { 
+  color: #e3d970;
+}
+
+.unresolved-incident { 
+  color: #BD5151;
+}
+
+.resolved-incident { 
+  color: #51BD75;
+}
+
 /* HIDE NAVBAR COMPLETELY ON MOBILE */
 .nav-bar {
   display: none;
