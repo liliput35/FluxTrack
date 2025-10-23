@@ -15,7 +15,7 @@ Chua - LOGIN VALIDATION
 
     SELECT * 
     FROM users 
-    WHERE username = 'marias' 
+    WHERE username = 'marias' //entered username
     AND password = 'password123';
 
 
@@ -27,7 +27,7 @@ Torres - CREATE ACCOUNT
 
 Gomez - CREATE INCIDENT 
 
-    INSERT INTO incidents (user_id, incident_type, location, date, time, status, remarks)
+    INSERT INTO incidents (user_id, incident_description, location, date, time, status, remarks)
     VALUES (1, 'Wet Floor', '3rd Floor', '2025-09-20', '11:11:00', 'Ongoing', 'Notified');
 
 
