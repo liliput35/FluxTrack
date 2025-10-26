@@ -8,7 +8,7 @@
     <title>Create Account</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     
 </head>
 <body>
@@ -18,7 +18,7 @@
 
         <div class="login-right">
           <div class="img-container">
-            <img src="./assets/images/logo.png" alt="">
+            <img src="../assets/images/logo.png" alt="">
           </div>
 
           
@@ -43,7 +43,7 @@
             <input type="submit" value="Create Account" class="submit-btn">
           </form>
 
-          <p class="create-noacc text-center">Already have an account? <span><a href="./login-page.php">Log In</a></span></p> 
+          <p class="create-noacc text-center">Already have an account? <span><a href="../login-page.php">Log In</a></span></p> 
           
 
         </div>
@@ -53,4 +53,4 @@
 </body>
 
 
-<?php include('./includes/footer.php') ?>
+<?php include('../includes/footer.php') ?>

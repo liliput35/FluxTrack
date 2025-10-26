@@ -52,7 +52,7 @@
           </form>
 
           <!-- CIOCON 10-14-->
-          <p class="login-noacc text-center">Don't have an account? <span><a href="./create-page.php">Sign Up</a></span></p> 
+          <p class="login-noacc text-center">Don't have an account? <span><a href="./pages/create-page.php">Sign Up</a></span></p> 
           
 
         </div>

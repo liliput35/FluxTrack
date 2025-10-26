@@ -11,7 +11,7 @@ document.getElementById('toggleEditMode').addEventListener('click', function () 
         if (!editCell.querySelector('a')) {
             const link = document.createElement('a');
             link.href = `edit-incident.php`;
-            link.innerHTML = '<img src="./assets/images/edit-icon.png"/>'; // or your icon
+            link.innerHTML = '<img src="../assets/images/edit-icon.png"/>'; // or your icon
             link.style.textDecoration = 'none';
             editCell.appendChild(link);
         }

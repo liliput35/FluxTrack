@@ -7,22 +7,22 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
 </head>
 <body>
     <div class="layout">
-        <?php include('./includes/navbar.php') ?>
-        <?php include('./includes/mobile-navbar.php') ?>
+        <?php include('../includes/navbar.php') ?>
+        <?php include('../includes/mobile-navbar.php') ?>
 
         <!-- SANTI GIAN TABLE -->
         <!-- CIOCON edit for STYLES -->
 
         <div class="main-content">
-            <?php include('./includes/mobile-header.php') ?>
+            <?php include('../includes/mobile-header.php') ?>
             
             <div class="main-content-container">
-                <p class="page-info"> <img src="./assets/images/blue-home-icon.png" alt=""><span>Home  /  Dashboard</span></p>
+                <p class="page-info"> <img src="../assets/images/blue-home-icon.png" alt=""><span>Home  /  Dashboard</span></p>
                 
                 <div class="dashboard-cards">
                     <div class="recent-incident dash-card dash-card-left">
@@ -177,6 +177,6 @@
         
 </body>
 
-<script src="./assets/js/main.js"></script>
+<script src="../assets/js/main.js"></script>
 
-<?php include('./includes/footer.php') ?>
+<?php include('../includes/footer.php') ?>

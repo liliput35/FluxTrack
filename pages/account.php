@@ -7,24 +7,24 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
 </head>
 <body>
     <div class="layout">
-        <?php include('./includes/navbar.php') ?>
-        <?php include('./includes/mobile-navbar.php') ?>
+        <?php include('../includes/navbar.php') ?>
+        <?php include('../includes/mobile-navbar.php') ?>
 
 
         <div class="main-content account-page">
-            <?php include('./includes/mobile-header.php') ?>
+            <?php include('../includes/mobile-header.php') ?>
             
             <div class="main-content-container">
 
-                <p class="page-info"> <img src="./assets/images/blue-account-icon.png" alt=""><span>My Account</span></p>
+                <p class="page-info"> <img src="../assets/images/blue-account-icon.png" alt=""><span>My Account</span></p>
 
                 <div class="account-heading">
-                    <img src="./assets/images/blue-account-icon.png" alt="">
+                    <img src="../assets/images/blue-account-icon.png" alt="">
 
                     <div class="pref-name">
                         <p>Preferred Name</p>
@@ -86,4 +86,4 @@
 </body>
 
 
-<?php include('./includes/footer.php') ?>
+<?php include('../includes/footer.php') ?>

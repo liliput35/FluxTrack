@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reports</title>
+    <title>History</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
 </head>
 <body>
     <div class="layout">
-        <?php include('./includes/navbar.php') ?>
-        <?php include('./includes/mobile-navbar.php') ?>
+        <?php include('../includes/navbar.php') ?>
+        <?php include('../includes/mobile-navbar.php') ?>
 
         <!-- SANTI GIAN TABLE -->
         <!-- CIOCON edit for STYLES -->
 
         <div class="main-content">
-            <?php include('./includes/mobile-header.php') ?>
+            <?php include('../includes/mobile-header.php') ?>
             
             <div class="main-content-container">
-                <p class="page-info"> <img src="./assets/images/blue-report-icon.png" alt=""><span>Reports  /  Incidents</span></p>
+                <p class="page-info"> <img src="../assets/images/blue-history-icon.png" alt=""><span>History  /  Incidents</span></p>
 
-                <h2 class="page-heading">Incident Reports</h2>
+                <h2 class="page-heading">Completed Reports</h2>
                 
 
                 <div class="table-search-group">
@@ -38,7 +38,6 @@
 
                     <div class="bot-search">
                         <button class="edit-btn" id="toggleEditMode">Edit</button>
-                        <a href="./add-incident.php">+</a>
                     </div>
                 </div>
                 
@@ -75,7 +74,7 @@
                         <td data-label="Date">Oct 8, 2025</td>
                         <td data-label="Time">6:10 PM</td>
                         <td data-label="Location">Gate 2</td>
-                        <td data-label="Status" class="ongoing-incident">Ongoing</td>
+                        <td data-label="Status" class="resolved-incident">Resolved</td>
                         <td data-label="Remarks">First aid team on standby</td> 
                         <td class="edit-cell"></td> 
                     </tr>
@@ -86,7 +85,7 @@
                         <td data-label="Date">Oct 8, 2025</td>
                         <td data-label="Time">6:45 PM</td>
                         <td data-label="Location">Food Court</td>
-                        <td data-label="Status" class="unresolved-incident">Unresolved</td>
+                        <td data-label="Status" class="resolved-incident">Resolved</td>
                         <td data-label="Remarks">Item found and returned</td>   
                         <td class="edit-cell"></td> 
                     </tr>
@@ -97,7 +96,7 @@
                         <td data-label="Date">Oct 8, 2025</td>
                         <td data-label="Time">7:05 PM</td>
                         <td data-label="Location">Main Hall</td>
-                        <td data-label="Status" class="ongoing-incident">Ongoing</td>
+                        <td data-label="Status" class="resolved-incident">Resolved</td>
                         <td data-label="Remarks">Security investigating</td>  
                         <td class="edit-cell"></td>   
                     </tr>
@@ -122,7 +121,7 @@
         
 </body>
 
-<script src="./assets/js/main.js"></script>
+<script src="../assets/js/main.js"></script>
 
 
-<?php include('./includes/footer.php') ?>
+<?php include('../includes/footer.php') ?>
