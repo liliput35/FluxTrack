@@ -119,7 +119,7 @@
                         <td data-label="Date">Oct 8, 2025</td>
                         <td data-label="Time">5:30 PM</td>
                         <td data-label="Location">Main Stage</td>
-                        <td data-label="Status" class="resolved-incident">Resolved</td>
+                        <td data-label="Status" class=""><span class="badge bg-success">Resolved</span></td>
                         <td data-label="Remarks">Sound system reset successfully</td> 
                         <td class="edit-cell"></td>   
                     </tr>
@@ -130,7 +130,7 @@
                         <td data-label="Date">Oct 8, 2025</td>
                         <td data-label="Time">6:10 PM</td>
                         <td data-label="Location">Gate 2</td>
-                        <td data-label="Status" class="ongoing-incident">Ongoing</td>
+                        <td data-label="Status" class="ongoing-incident"><span class="badge bg-warning">Ongoing</span></td>
                         <td data-label="Remarks">First aid team on standby</td> 
                         <td class="edit-cell"></td> 
                     </tr>
@@ -141,7 +141,7 @@
                         <td data-label="Date">Oct 8, 2025</td>
                         <td data-label="Time">6:45 PM</td>
                         <td data-label="Location">Food Court</td>
-                        <td data-label="Status" class="unresolved-incident">Unresolved</td>
+                        <td data-label="Status" class="unresolved-incident"><span class="badge bg-danger">Unresolved</span></td>
                         <td data-label="Remarks">Item found and returned</td>   
                         <td class="edit-cell"></td> 
                     </tr>
@@ -152,7 +152,7 @@
                         <td data-label="Date">Oct 8, 2025</td>
                         <td data-label="Time">7:05 PM</td>
                         <td data-label="Location">Main Hall</td>
-                        <td data-label="Status" class="ongoing-incident">Ongoing</td>
+                        <td data-label="Status" class="ongoing-incident"><span class="badge bg-warning">Ongoing</span></td>
                         <td data-label="Remarks">Security investigating</td>  
                         <td class="edit-cell"></td>   
                     </tr>
@@ -163,7 +163,7 @@
                         <td data-label="Date">Oct 8, 2025</td>
                         <td data-label="Time">7:25 PM</td>
                         <td data-label="Location">Restroom Area</td>
-                        <td data-label="Status" class="resolved-incident">Resolved</td>
+                        <td data-label="Status" class="resolved-incident"><span class="badge bg-success">Resolved</span></td>
                         <td data-label="Remarks">First aid administered</td> 
                         <td class="edit-cell"></td>    
                     </tr>
