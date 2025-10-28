@@ -29,17 +29,18 @@
 </head>
 <body>
     <!-- CIOCON STYLING  10-8 -->
-    <div class="vh-100 login-container main-container">
-      <div class="login-row">
-        <div class="login-left"></div>
+    <div class="vh-100 login-container main-container d-md-flex align-items-md-center">
+      
+      <div class="login-row d-md-flex">
+        <div class="login-left rounded-4 me-md-5"></div>
 
         <div class="login-right">
-          <div class="img-container">
+          <div class="img-container d-flex justify-content-center py-3 w-md-100">
             <img src="./assets/images/logo.png" alt="">
           </div>
 
           <!-- MJ LOG IN  10-7 -->
-          <h2>Log In</h2>
+          <h2 class="fw-bold">Log In</h2>
           <p>Enter your username and password to access your account </p>
           <form method="POST">
             <label for="username">Username</label> <br>
