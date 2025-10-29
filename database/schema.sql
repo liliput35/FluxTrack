@@ -2,6 +2,8 @@
     MAIN DB STRUCTURE
 */
 
+DROP DATABASE IF EXISTS fluxtrack_db;
+
 CREATE DATABASE IF NOT EXISTS fluxtrack_db;
 USE fluxtrack_db;
 
