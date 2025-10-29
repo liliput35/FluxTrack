@@ -1,7 +1,7 @@
-<div class="nav-bar collapsed">
-    <div class="main-container">
+<div class="nav-bar collapsed d-none d-md-block py-md-3 overflow-hidden">
+    <div class="main-container d-md-flex flex-md-column rounded-4 p-md-3">
 
-        <div class="nav-header">
+        <div class="nav-header d-md-flex align-items-md-center justify-content-md-center pb-md-5">
             <img src="../assets/images/white-logo.png" alt="" class="nav-logo">
         </div>
         

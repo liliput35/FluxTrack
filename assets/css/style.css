@@ -45,6 +45,9 @@ ul {
   padding: 0;
 }
 
+.w-90 { width: 90% !important; }
+
+
 .ongoing-incident { 
   color: #e3d970;
 }
@@ -57,11 +60,6 @@ ul {
   color: #51BD75;
 }
 
-/* HIDE NAVBAR COMPLETELY ON MOBILE */
-.nav-bar {
-  display: none;
-}
-
 .nav-bar .main-container nav ul li a:hover span { 
   font-weight: bold;
 }
@@ -69,51 +67,16 @@ ul {
 /*MOBILE HEADER*/
 .mobile-header { 
   background-color: var(--lighter-primary);
-  width: 100%;
-  left: 0;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-  padding: 1em 0; 
-  margin-bottom: 1em;
 }
 
 .mobile-header img { 
   width: 8%;
 }
 
-/*MOBILE NAVBAR*/
-.mobile-nav-bar { 
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-bottom: 1em; 
-  z-index: 999; 
-}
-
 .mobile-nav-bar .main-container { 
-  background-color: var(--lighter-primary); 
-  padding: 1em; 
-  border-radius: 50px; 
-  width: 90%;
+  background-color: var(--lighter-primary);
 }
 
-.mobile-nav-bar nav ul { 
-  display: flex; 
-  align-items: center; 
-  justify-content: space-around;
-  width: 100%;
-}
-
-.mobile-nav-bar nav ul li a { 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center;
-}
 
 .mobile-nav-bar nav ul li a:hover span { 
   font-weight: bold;
@@ -126,7 +89,7 @@ ul {
 
 /* LOGIN PAGE – applies both mobile and desktop */
 .login-right h2 { 
-  font-weight: 700;
+  /*font-weight: 700;*/
   color: var(--primary-blue);
 }
 
@@ -149,10 +112,7 @@ ul {
 }
 
 .login-right .img-container {
-  display: flex;
-  justify-content: center;
   margin-bottom: 5em;
-  padding: 1em 0;
 }
 
 .login-right img {
@@ -187,8 +147,6 @@ ul {
 }
 
 .main-content-container { 
-  width: 90%;
-  margin: 0 auto;
   margin-bottom: 15em;
 }
 
@@ -612,11 +570,8 @@ ul {
 
   /* Show navbar again */
   .nav-bar {
-    display: block;
-    padding: 1em 0;
     width: 260px;
     transition: width 0.3s ease;
-    overflow: hidden;
   }
 
   .nav-bar.collapsed {
@@ -629,29 +584,22 @@ ul {
   }
 
   .nav-bar .main-container {
-    display: flex;
-    flex-direction: column;
+    
     height: 90vh;
     background-color: var(--lighter-primary);
-    border-radius: 20px;
-    padding: 1em;
   }
 
   .nav-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-bottom: solid 1px #aeaeae;
-    padding-bottom: 2em;
   }
 
   .nav-bar nav {
     margin-top: 5em;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     height: 100%;
+    justify-content: space-between;
   }
 
   .nav-bar nav ul li {
@@ -688,40 +636,22 @@ ul {
 
     /* Layout wrapper */
   .layout {
-    display: flex;
-    width: 100%;
     min-height: 100vh;
   }
 
   /* Main content always visible */
   .main-content {
-    flex: 1;
-    padding: 1em;
     transition: margin-left 0.3s;
   }
 
   .main-content-container { 
-    width: 100%;
-    margin: 0 auto;
     padding-bottom: 7em;
-  }
-
-  /* Desktop login layout */
-  .login-container {
-    display: flex;
-    align-items: center;
-  }
-
-  .login-row {
-    display: flex;
   }
 
   .login-left {
     height: 95vh;
     background-color: var(--lighter-primary);
-    border-radius: 20px;
     width: 50vw;
-    margin-right: 6em;
   }
 
   .login-right {
@@ -730,9 +660,6 @@ ul {
 
   .login-right .img-container {
     margin-bottom: 15em;
-    width: 100%;
-    display: flex;
-    justify-content: center;
   }
 
   .login-right img {
@@ -740,9 +667,7 @@ ul {
   }
 
   .dashboard-cards { 
-    display: grid; 
     grid-template-columns: 1fr 1fr; 
-    grid-column-gap: 1em;
     width: 80%;
   }
 

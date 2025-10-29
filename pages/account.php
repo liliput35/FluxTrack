@@ -11,15 +11,15 @@
 
 </head>
 <body>
-    <div class="layout">
+    <div class="layout d-md-flex w-md-100">
         <?php include('../includes/navbar.php') ?>
         <?php include('../includes/mobile-navbar.php') ?>
 
 
-        <div class="main-content account-page">
+        <div class="main-content account-page flex-md-fill p-md-3 pt-md-5">
             <?php include('../includes/mobile-header.php') ?>
             
-            <div class="main-content-container">
+            <div class="main-content-container w-90 mx-auto mx-md-0 w-md-100">
 
                 <p class="page-info"> <img src="../assets/images/blue-account-icon.png" alt=""><span>My Account</span></p>
 
