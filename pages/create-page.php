@@ -7,7 +7,7 @@
       $username = $_POST['username'] ?? '';
       $password = $_POST['password'] ?? '';
       $name = $firstname . ' ' . $lastname;
-      $role = 'Staff'; // Default role
+      $role = $_POST['role']; // Default role
 
       $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -68,6 +68,9 @@
             
             <label for="password">Password</label> <br>
             <input type="password" name="password" placeholder="Enter your password" required><br><br>
+            
+            <label for="role">Role</label> <br>
+            <input type="text" name="role" value="Staff" required><br><br>
             
             <input type="submit" value="Create Account" class="submit-btn">
           </form>

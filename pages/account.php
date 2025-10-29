@@ -27,7 +27,7 @@
                     <img src="../assets/images/blue-account-icon.png" alt="">
 
                     <div class="pref-name">
-                        <p>Preferred Name</p>
+                        <p>Name</p>
                         <input type="text" value="Juan Cruz">
                     </div>
                 </div>
@@ -47,12 +47,8 @@
                     </div>
                    
                     <div class="form-group">
-                        <p>Birthdate</p>
-                        <input type="date" >
-                    </div>
-                    <div class="form-group">
-                        <p>Phone Number</p>
-                        <input type="text" value="09XX XXX XXXX">
+                        <p>Role</p>
+                        <input type="text" value="Staff">
                     </div>
 
                     <button>Save Changes</button>
