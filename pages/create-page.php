@@ -1,3 +1,32 @@
+<?php
+  include('../includes/db_connect.php');
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $firstname = $_POST['firstname'] ?? '';
+      $lastname = $_POST['lastname'] ?? '';
+      $username = $_POST['username'] ?? '';
+      $password = $_POST['password'] ?? '';
+      $name = $firstname . ' ' . $lastname;
+      $role = 'Staff'; // Default role
+
+      $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+      $sql = "INSERT INTO users (name, role, username, password) VALUES (?, ?, ?, ?)";
+
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param("ssss", $name, $role, $username, $hashed_password);
+
+      if ($stmt->execute()) {
+          header("Location: ../login-page.php");
+          exit;
+      } else {
+          echo "Error: " . $sql . "<br>" . $conn->error;
+      }
+
+      $stmt->close();
+      $conn->close();
+  }
+?>
 
 <!-- CIOCON CREATE ACCOUNT  10-14 -->
 <!DOCTYPE html>

@@ -1,19 +1,35 @@
-<?php // Login Logic - Mj Torres - 10/7/2025
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $valid_username = "admin";
-        $valid_password = "secret123";
-        
-        $username = $_POST['username'] ?? '';
-        $password = $_POST['password'] ?? '';
-    
-        if ($username === $valid_username && $password === $valid_password) {
-          echo "<h2>Welcome, $username!</h2> 
-                <a href='./dashboard.php'>to home</a>";
-          exit;
-        } else {
-          echo "<h2>Invalid username or password.</h2>";
-        }
-    }
+<?php 
+  session_start();
+  include('./includes/db_connect.php');
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $username = $_POST['username'] ?? '';
+      $password = $_POST['password'] ?? '';
+
+      $sql = "SELECT * FROM users WHERE username = ?";
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param("s", $username);
+      $stmt->execute();
+      $result = $stmt->get_result();
+
+      if ($result->num_rows > 0) {
+          $user = $result->fetch_assoc();
+          if (password_verify($password, $user['password'])) {
+              $_SESSION['user_id'] = $user['user_id'];
+              $_SESSION['username'] = $user['username'];
+              $_SESSION['role'] = $user['role'];
+              header("Location: ./pages/dashboard.php");
+              exit;
+          } else {
+              $error_message = "Invalid username or password.";
+          }
+      } else {
+          $error_message = "Invalid username or password.";
+      }
+
+      $stmt->close();
+      $conn->close();
+  }
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +44,7 @@
     
 </head>
 <body>
-    <!-- CIOCON STYLING  10-8 -->
+    <!-- CIOCON BOOTSTRAP 10-28 -->
     <div class="vh-100 login-container main-container d-md-flex align-items-md-center">
       
       <div class="login-row d-md-flex">
@@ -39,10 +55,15 @@
             <img src="./assets/images/logo.png" alt="">
           </div>
 
-          <!-- MJ LOG IN  10-7 -->
+          <!-- MJ LOG IN  10-28 -->
           <h2 class="fw-bold">Log In</h2>
           <p>Enter your username and password to access your account </p>
-          <form method="POST">
+
+          <?php if (isset($error_message)): ?>
+            <p style="color: red;"><?php echo $error_message; ?></p>
+          <?php endif; ?>
+
+           <form method="POST">
             <label for="username">Username</label> <br>
             <input type="text" name="username" placeholder="Enter your username" required><br><br>
             
@@ -54,6 +75,7 @@
 
           <!-- CIOCON 10-14-->
           <p class="login-noacc text-center">Don't have an account? <span><a href="./pages/create-page.php">Sign Up</a></span></p> 
+   
           
 
         </div>
