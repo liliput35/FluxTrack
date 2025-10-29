@@ -46,8 +46,8 @@
                     <thead>
                     <tr class="header-row">
                         <th scope="col">No</th>
-                        <th scope="col">Reporter Name</th>
                         <th scope="col">Incident Type</th>
+                        <th scope="col">Reporter Name</th>
                         <th scope="col">Location</th>
                         <th scope="col">Date</th>
                         <th scope="col">Time</th>
