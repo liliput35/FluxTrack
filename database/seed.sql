@@ -10,9 +10,13 @@ INSERT INTO `users` (`user_id`, `name`, `role`, `username`, `password`) VALUES
 (9, 'Mia Chua', 'Housekeeping', 'mia', '$2y$10$1ZTV3OU6WFlhG6QOpCHDmu9O70ikkImGWPfx.M2Ap/cOUFCncwuX.');
 
 -- Insert a sample incident
-INSERT INTO incidents (description, location, reported_by, assigned_to, role_assigned_to, status, remarks, date, time)
+INSERT INTO incidents (description, location, reported_by, role_assigned_to, status, remarks, date, time)
 VALUES
-('Equipment Failure', 'Main Stage', 7, 8, 'Security', 'Ongoing', 'Sound system failure', '2025-10-08', '17:30:00');
+('Equipment Failure', 'Main Stage', 7, 'Engineering', 'Resolved', 'Sound system failure', '2025-10-08', '17:30:00'), 
+('Medical Emergency', 'Gate 2', 7,'Security', 'Ongoing', 'First aid team on standby', '2025-10-08', '17:30:00'), 
+('Lost Item', 'Food Court', 7, 'Security', 'Unresolved', 'Item never found', '2025-10-08', '17:30:00'), 
+('Crowd Disturbance', 'Main Hall', 7, 'Operations', 'Ongoing', 'Operations Investigating', '2025-10-08', '17:30:00'), 
+('Slip and Fall', 'Restroom Area', 7, 'Housekeeping', 'Resolved', 'Mopped wet floor', '2025-10-08', '17:30:00');
 
 -- Insert updates related to the incident
 INSERT INTO incident_updates (updated_by, incident_id, updateText, status)

@@ -22,14 +22,12 @@ CREATE TABLE incidents (
   description VARCHAR(255) NOT NULL,
   location VARCHAR(255) NOT NULL,
   reported_by INT(10),
-  assigned_to INT(10),
   role_assigned_to VARCHAR(255),
   status VARCHAR(255) DEFAULT 'Ongoing',
   remarks VARCHAR(255),
   date DATE,
   time TIME,
-  FOREIGN KEY (reported_by) REFERENCES users(user_id) ON DELETE SET NULL,
-  FOREIGN KEY (assigned_to) REFERENCES users(user_id) ON DELETE SET NULL
+  FOREIGN KEY (reported_by) REFERENCES users(user_id) ON DELETE SET NULL
 );
 
 -- INCIDENT UPDATES TABLE
