@@ -18,13 +18,13 @@
         <!-- SANTI GIAN TABLE -->
         <!-- CIOCON edit for STYLES -->
 
-        <div class="main-content flex-md-fill p-md-3">
+        <div class="main-content flex-md-fill p-md-3 pt-md-5">
             <?php include('../includes/mobile-header.php') ?>
             
-            <div class="main-content-container w-90 mx-auto w-md-100">
+            <div class="main-content-container w-90 mx-auto mx-md-0 w-md-100">
                 <p class="page-info"> <img src="../assets/images/blue-home-icon.png" alt=""><span>Home  /  Dashboard</span></p>
                 
-                <div class="dashboard-cards">
+                <div class="dashboard-cards my-4 d-md-grid gap-md-3">
                     <div class="recent-incident dash-card dash-card-left">
                         <h4>Recent Incident</h4>
                         <h2>Air Conditioning Failure</h2>
