@@ -72,6 +72,8 @@
 
                     <button>Change Password</button>
                 </div>
+
+                <a href="../includes/logout.php" class="text-black">LOG OUT</a>
                 
             </div>
 

@@ -1,3 +1,27 @@
+<?php 
+    if(session_status() === PHP_SESSION_NONE){ 
+        session_start() ;
+    }
+
+    include('../includes/db_connect.php') ; 
+
+    //DEFAULT NAME 
+    $user_name = 'Guest' ; 
+
+    //if user is logged in get name from db 
+    if(isset($_SESSION['user_id'])){ 
+        $user_id = $_SESSION['user_id'] ; 
+
+        $sql = "SELECT name FROM users WHERE user_id = $user_id";
+        $result = mysqli_query($conn, $sql); 
+
+        if($result && mysqli_num_rows($result) > 0){ 
+            $row = mysqli_fetch_assoc($result); 
+            $user_name = htmlspecialchars($row['name']);
+        }
+    }
+?>
+
 <div class="nav-bar collapsed d-none d-md-block py-md-3 overflow-hidden">
     <div class="main-container d-md-flex flex-md-column rounded-4 p-md-3">
 
@@ -14,7 +38,7 @@
             </ul>
 
             <ul class="bot-nav">
-                <li><a href="../pages/account.php"><img src="../assets/images/accounts-icon.png" alt=""><span>Juan Cruz</span></a></li>
+                <li><a href="../pages/account.php"><img src="../assets/images/accounts-icon.png" alt=""><span><?= $user_name ?></span></a></li>
             </ul>
         </nav>
     </div>
