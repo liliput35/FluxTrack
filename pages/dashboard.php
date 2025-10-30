@@ -24,15 +24,22 @@
         if ($user_role == 'Admin') {
             $sql = "SELECT incidents.incident_id, incidents.description, users.name AS reporter_name, incidents.location, incidents.date, incidents.time, incidents.status, incidents.remarks 
                     FROM incidents
-                    LEFT JOIN users ON incidents.reported_by = users.user_id";
+                    LEFT JOIN users ON incidents.reported_by = users.user_id 
+                    ORDER BY incidents.incident_id DESC 
+                    LIMIT 5" ;
+            $table_header = 'All' ;
         } else {
             $sql = "SELECT incidents.incident_id, incidents.description, users.name AS reporter_name, incidents.location, incidents.date, incidents.time, incidents.status, incidents.remarks  
                     FROM incidents
                     LEFT JOIN users ON incidents.reported_by = users.user_id
-                    WHERE incidents.role_assigned_to = '$user_role'";
+                    WHERE incidents.role_assigned_to = '$user_role' 
+                    ORDER BY incidents.incident_id DESC 
+                    LIMIT 5";
+            $table_header = $user_role ;
         }
         
         $result_incidents = mysqli_query($conn, $sql);
+
 
     }
 ?>
@@ -123,6 +130,7 @@
                     
                 </div>
 
+                <h2><?= $table_header?> Incidents</h2>
                 <div class="table-search-group">
                     <div class="top-search">
                         <input type="text" placeholder="Search..."> 
@@ -153,61 +161,47 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row" data-label="No">1</th>
-                        <td data-label="Incident Type">Equipment Failure</td>
-                        <td data-label="Reporter Name">Maria Santos</td>
-                        <td data-label="Date">Oct 8, 2025</td>
-                        <td data-label="Time">5:30 PM</td>
-                        <td data-label="Location">Main Stage</td>
-                        <td data-label="Status" class=""><span class="badge bg-success">Resolved</span></td>
-                        <td data-label="Remarks">Sound system reset successfully</td> 
-                        <td class="edit-cell"></td>   
-                    </tr>
-                    <tr>
-                        <th scope="row" data-label="No">2</th>
-                        <td data-label="Incident Type">Medical Emergency</td>
-                        <td data-label="Reporter Name">John Cruz</td>
-                        <td data-label="Date">Oct 8, 2025</td>
-                        <td data-label="Time">6:10 PM</td>
-                        <td data-label="Location">Gate 2</td>
-                        <td data-label="Status" class="ongoing-incident"><span class="badge bg-warning">Ongoing</span></td>
-                        <td data-label="Remarks">First aid team on standby</td> 
-                        <td class="edit-cell"></td> 
-                    </tr>
-                    <tr>
-                        <th scope="row" data-label="No">3</th>
-                        <td data-label="Incident Type">Lost Item</td>
-                        <td data-label="Reporter Name">Liza Tan</td>
-                        <td data-label="Date">Oct 8, 2025</td>
-                        <td data-label="Time">6:45 PM</td>
-                        <td data-label="Location">Food Court</td>
-                        <td data-label="Status" class="unresolved-incident"><span class="badge bg-danger">Unresolved</span></td>
-                        <td data-label="Remarks">Item found and returned</td>   
-                        <td class="edit-cell"></td> 
-                    </tr>
-                    <tr>
-                        <th scope="row" data-label="No">4</th>
-                        <td data-label="Incident Type">Crowd Disturbance</td>
-                        <td data-label="Reporter Name">Carlo Dela Cruz</td>
-                        <td data-label="Date">Oct 8, 2025</td>
-                        <td data-label="Time">7:05 PM</td>
-                        <td data-label="Location">Main Hall</td>
-                        <td data-label="Status" class="ongoing-incident"><span class="badge bg-warning">Ongoing</span></td>
-                        <td data-label="Remarks">Security investigating</td>  
-                        <td class="edit-cell"></td>   
-                    </tr>
-                    <tr>
-                        <th scope="row" data-label="No">5</th>
-                        <td data-label="Incident Type">Slip and Fall</td>
-                        <td data-label="Reporter Name">Ana Mendoza</td>
-                        <td data-label="Date">Oct 8, 2025</td>
-                        <td data-label="Time">7:25 PM</td>
-                        <td data-label="Location">Restroom Area</td>
-                        <td data-label="Status" class="resolved-incident"><span class="badge bg-success">Resolved</span></td>
-                        <td data-label="Remarks">First aid administered</td> 
-                        <td class="edit-cell"></td>    
-                    </tr>
+                        <?php  
+                            if ($result_incidents && mysqli_num_rows($result_incidents) > 0) {  
+                                $count = 1;  
+                                while ($row = mysqli_fetch_array($result_incidents)) {  
+                                    // Extract fields
+                                    $description = htmlspecialchars($row['description']);
+                                    $reporter = htmlspecialchars($row['reporter_name']);
+                                    $location = htmlspecialchars($row['location']);
+                                    $date = date("M d, Y", strtotime($row['date']));
+                                    $time = date("g:i A", strtotime($row['time']));
+                                    $status = htmlspecialchars($row['status']);
+                                    $remarks = htmlspecialchars($row['remarks']);
+
+                                    // Choose badge color
+                                    $badgeClass = '';
+                                    if ($status == 'Resolved') $badgeClass = 'bg-success';
+                                    elseif ($status == 'Ongoing') $badgeClass = 'bg-warning';
+                                    else $badgeClass = 'bg-danger';
+
+                                    echo "
+                                    <tr>
+                                        <th scope='row' data-label='No'>{$count}</th>
+                                        <td data-label='Incident Type'>{$description}</td>
+                                        <td data-label='Reporter Name'>{$reporter}</td>
+                                        <td data-label='Date'>{$date}</td>
+                                        <td data-label='Time'>{$time}</td>
+                                        <td data-label='Location'>{$location}</td>
+                                        <td data-label='Status'><span class='badge {$badgeClass}'>{$status}</span></td>
+                                        <td data-label='Remarks'>{$remarks}</td>
+                                        <td class='edit-cell'></td>   
+                                    </tr>
+                                    ";
+                                    $count++;
+                                }
+                            } else {
+                                echo "
+                                <tr>
+                                    <td colspan='9' class='text-center'>No incidents found.</td>
+                                </tr>";
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
