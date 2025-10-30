@@ -7,6 +7,34 @@
     }
 
     include('../includes/db_connect.php');
+
+    //if user is logged in get role 
+
+    if(isset($_SESSION['user_id'])){ 
+        $user_id = $_SESSION['user_id'] ; 
+
+        $sql = "SELECT role FROM users WHERE user_id = $user_id";
+        $result = mysqli_query($conn, $sql); 
+
+        if($result && mysqli_num_rows($result) > 0){ 
+            $row = mysqli_fetch_assoc($result); 
+            $user_role = htmlspecialchars($row['role']);
+        }
+
+        if ($user_role == 'Admin') {
+            $sql = "SELECT incidents.incident_id, incidents.description, users.name AS reporter_name, incidents.location, incidents.date, incidents.time, incidents.status, incidents.remarks 
+                    FROM incidents
+                    LEFT JOIN users ON incidents.reported_by = users.user_id";
+        } else {
+            $sql = "SELECT incidents.incident_id, incidents.description, users.name AS reporter_name, incidents.location, incidents.date, incidents.time, incidents.status, incidents.remarks  
+                    FROM incidents
+                    LEFT JOIN users ON incidents.reported_by = users.user_id
+                    WHERE incidents.role_assigned_to = '$user_role'";
+        }
+        
+        $result_incidents = mysqli_query($conn, $sql);
+
+    }
 ?>
 
 
@@ -116,9 +144,9 @@
                         <th scope="col">No</th>
                         <th scope="col">Incident Type</th>
                         <th scope="col">Reporter Name</th>
-                        <th scope="col">Location</th>
                         <th scope="col">Date</th>
                         <th scope="col">Time</th>
+                        <th scope="col">Location</th>
                         <th scope="col">Status</th>
                         <th scope="col">Remarks</th>
                         <th class="edit-col"></th>
