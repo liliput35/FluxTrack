@@ -1,3 +1,9 @@
+<!-- MIA -->
+<!-- GET REFERENCE FROM account.php on how to connect db to page -->
+<!-- use sql UPDATE query -->
+<!-- base kay sir nga update book-->
+<!-- access this page through dashboard.php lng danay kay amo plng na na ka link-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

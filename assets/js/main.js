@@ -10,7 +10,7 @@ document.getElementById('toggleEditMode').addEventListener('click', function () 
         // Only add if not already injected
         if (!editCell.querySelector('a')) {
             const link = document.createElement('a');
-            link.href = `edit-incident.php`;
+            link.href = `edit-incident.php?incidentId=${rowId}`;
             link.innerHTML = '<img src="../assets/images/edit-icon.png"/>'; // or your icon
             link.style.textDecoration = 'none';
             editCell.appendChild(link);

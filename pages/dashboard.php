@@ -166,6 +166,7 @@
                                 $count = 1;  
                                 while ($row = mysqli_fetch_array($result_incidents)) {  
                                     // Extract fields
+                                    $incidentId = htmlspecialchars($row['incident_id']);
                                     $description = htmlspecialchars($row['description']);
                                     $reporter = htmlspecialchars($row['reporter_name']);
                                     $location = htmlspecialchars($row['location']);
@@ -181,7 +182,7 @@
                                     else $badgeClass = 'bg-danger';
 
                                     echo "
-                                    <tr>
+                                    <tr data-id='{$incidentId}'>
                                         <th scope='row' data-label='No'>{$count}</th>
                                         <td data-label='Incident Type'>{$description}</td>
                                         <td data-label='Reporter Name'>{$reporter}</td>

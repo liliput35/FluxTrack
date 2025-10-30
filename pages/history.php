@@ -1,3 +1,8 @@
+<!-- GIAN -->
+<!-- GET REFERENCE FROM dashboard.php on how to connect db to page -->
+<!-- sql select query from dashboard outputs only 5. dont limit it here output all -->
+<!-- output only if incident.status = 'Resolved' -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +20,6 @@
         <?php include('../includes/navbar.php') ?>
         <?php include('../includes/mobile-navbar.php') ?>
 
-        <!-- SANTI GIAN TABLE -->
-        <!-- CIOCON edit for STYLES -->
 
         <div class="main-content flex-md-fill p-md-3 pt-md-5">
             <?php include('../includes/mobile-header.php') ?>
