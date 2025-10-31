@@ -1,3 +1,34 @@
+<?php
+include('../includes/db_connect.php');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $description = $_POST['incident_type'] ?? ''; // alternative name for description sa DB
+    $location = $_POST['location'] ?? '';
+    $reported_by = $_POST['reporter_name'] ?? ''; //alternative name for reported by to sa DB
+    $role_assigned_to = $_POST['assigned_department'] ?? ''; // alternative name for role assigned to sa DB
+    $status = $_POST['status'] ?? ''; 
+    $remarks = $_POST['remarks'] ?? '';
+    $date = $_POST['date'] ?? '';
+    $time = $_POST['time'] ?? '';
+
+    $sql = "INSERT INTO incidents (description, location, reported_by, role_assigned_to, status, remarks, date, time)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssssss", $description, $location, $reported_by, $role_assigned_to, $status, $remarks, $date, $time);
+
+    if ($stmt->execute()) {
+        header("Location: add-incident.php");
+        exit;
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
+
 <!-- SANTI -->
 <!-- GET REFERENCE FROM create-page.php on how to connect db to page -->
 <!-- use sql INSERT INTO incidents query -->
@@ -31,7 +62,8 @@
                 
                 <h2>Incident Details</h2>
 
-                <form method="POST" action="add-incident-handler.php">
+                <!-- (REMOVE THIS PARENTHESIS IF REVERT) <form method="POST" action="add-incident-handler.php"> -->
+                    <form method="POST" action="">
                     <div class="incident-details">
                         <div class="incident-text-inputs">
                             <div class="incident-form-group">
