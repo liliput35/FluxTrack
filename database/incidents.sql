@@ -3,6 +3,8 @@
 
 -- Existing 5 incidents already inserted above
 -- Add 15 more to make a total of 20
+USE fluxtrack_db;
+
 
 
 INSERT INTO incidents (description, location, reported_by, role_assigned_to, status, remarks, date, time)
