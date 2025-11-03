@@ -4,6 +4,60 @@
 <!-- base kay sir nga update book-->
 <!-- access this page through dashboard.php lng danay kay amo plng na na ka link-->
 
+<?php
+    session_start();
+
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: ../login-page.php");
+        exit;
+    }
+
+    include('../includes/db_connect.php');
+    $user_id = $_SESSION['user_id'];
+    $message = '';
+
+
+    if (isset($_GET['incidentId'])) {
+        $id = $_GET['incidentId'];
+        $sql_fetch = "SELECT * FROM incidents WHERE incident_id = $id";
+        $result = mysqli_query($conn, $sql_fetch);
+
+        if ($result-> num_rows > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                $incident = $row['description'];
+                $location = $row['location'];
+                $date = $row['date'];
+                $time = $row['time'];
+                $role_assigned_to = $row['role_assigned_to'];
+                $status = $row['status'];
+                $remarks = $row['remarks'];
+            }
+        }
+    }
+
+    if(isset($_POST['update'])) {
+        $incident = $_POST['incident_type'];
+        $location = $_POST['location'];
+        $date = $_POST['date'];
+        $time = $_POST['time'];
+        $role_assigned_to = $_POST['assigned_department'];
+        $status = $_POST['status'];
+        $remarks = $_POST['remarks'];
+
+        $sql_update = "UPDATE incidents 
+                        SET description = '$incident', location = '$location', date = '$date', time = '$time', role_assigned_to = '$role_assigned_to', status = '$status', remarks = '$remarks' 
+                        WHERE incident_id = '$id'";
+
+        $result = mysqli_query($conn, $sql_update);
+        if ($result == TRUE) {
+            $response = "Incident Updated Successfully!";
+        } else {
+            $response = "Error:" . $sql . "<br>" . $conn->error;
+        }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,54 +88,122 @@
                 <h2>Incident Details</h2>
 
                 <div class="incident-details">
+                    <form method="POST" action="">
+                        <div class="incident-details">
+                            <div class="incident-text-inputs">
+                                <div class="incident-form-group">
+                                    <p>Reporter Name</p>
+                                    <input
+                                    type="text"
+                                    name="reporter_name"
+                                    value = "<?php echo $id; ?>"
+                                    placeholder="e.g Juan Cruz"
+                                    required
+                                    />
+                                </div>
 
-                    <div class="incident-text-inputs">
-                        <div class="incident-form-group">
-                            <p>Reporter Name</p>
-                            <input type="text" value="Juan Cruz">
-                        </div>
-                        
-                        <div class="incident-form-group">
-                            <p>Incident Type</p>
-                            <input type="text" value="Wet Floor">
-                        </div>
-    
-                        <div class="incident-form-group">
-                            <p>Location</p>
-                            <input type="text" value="3rd Floor">
-                        </div>
-    
-                        <div class="date-time">
-                            <div class="left-date">
-                                <p>Date</p>
-                                <input type="date" value="2004-11-14">
+                                <div class="incident-form-group">
+                                    <p>Incident Type</p>
+                                    <input
+                                    type="text"
+                                    name="incident_type"
+                                    value = "<?php echo $incident; ?>"
+                                    placeholder="e.g Wet Floor"
+                                    required
+                                    />
+                                </div>
+
+                                <div class="incident-form-group">
+                                    <p>Location</p>
+                                    <input
+                                    type="text"
+                                    name="location"
+                                    value = "<?php echo $location; ?>"
+                                    placeholder="e.g 3rd Floor"
+                                    required
+                                    />
+                                </div>
+
+                                <div class="date-time">
+                                    <div class="left-date">
+                                    <p>Date</p>
+                                    <input type="date" name="date" value = "<?php echo $date;?>" required  />
+                                    </div>
+                                    <div class="right-time">
+                                    <p>Time</p>
+                                    <input type="time" name="time" value = "<?php echo $time;?>" required />
+                                    </div>
+                                </div>
                             </div>
-                            <div class="right-time">
-                                <p>Time</p>
-                                <input type="time" value="14:30">
+
+                            <p>Assigned Department</p>
+                            <div class="department-btns">
+                                <input type="radio" id="dept_ops" name="assigned_department" value="Operations" hidden />
+                                <button type="button" data-target="dept_ops">Operations</button>
+
+                                <input type="radio" id="dept_eng" name="assigned_department" value="Engineering" hidden />
+                                <button type="button" data-target="dept_eng">Engineering</button>
+
+                                <input type="radio" id="dept_house" name="assigned_department" value="Housekeeping" hidden />
+                                <button type="button" data-target="dept_house">Housekeeping</button>
+
+                                <input type="radio" id="dept_sec" name="assigned_department" value="Security" hidden />
+                                <button type="button" data-target="dept_sec">Security</button>
                             </div>
+
+                            <p>Status</p>
+                            <div class="status-btns">
+                                <input type="radio" id="status_unresolved" name="status" value="Unresolved" hidden />
+                                <button type="button" data-target="status_unresolved">Unresolved</button>
+
+                                <input type="radio" id="status_ongoing" name="status" value="Ongoing" hidden />
+                                <button type="button" data-target="status_ongoing">Ongoing</button>
+
+                                <input type="radio" id="status_resolved" name="status" value="Resolved" hidden />
+                                <button type="button" data-target="status_resolved">Resolved</button>
+                            </div>
+
+                            <p>Remarks</p>
+                            <textarea name="remarks" id="remarks" placeholder="Add remarks here..." rows="4"> <?php echo $remarks;?> </textarea>
+                            <br />
+
+                            <button type="submit" value= "Update" name= "update" class="submit-btn">File Report</button>
                         </div>
-                    </div>
-
-                    <p>Status</p>
-                    <div class="status-btns">
-                        <button>Unresolved</button>
-                        <button>Ongoing</button>
-                        <button>Resolved</button>
-                    </div>
-
-                    <p>Remarks</p>
-                    <textarea name="" id="" value="">Floor wetness logged. Hazard mitigation in progress</textarea><br>
-
-                    <button class="submit-btn">Save Report Changes</button>
+                    </form>
                 </div>
-            </div>
 
+            </div>
+        
         </div>
         
     </div>
-        
+
+    <script>
+        document.querySelectorAll('.department-btns button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const group = btn.parentElement;
+            group.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const radio = document.getElementById(btn.dataset.target);
+            if (radio) radio.checked = true;
+        });
+        });
+
+        document.querySelectorAll('.status-btns button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const group = btn.parentElement;
+            group.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const radio = document.getElementById(btn.dataset.target);
+            if (radio) radio.checked = true;
+        });
+        });
+    </script>       
 </body>
+
+
 
 
 <?php include('../includes/footer.php') ?>
