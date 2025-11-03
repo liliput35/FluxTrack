@@ -1,32 +1,52 @@
 <?php
-include('../includes/db_connect.php');
+    session_start();
+    include('../includes/db_connect.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $description = $_POST['incident_type'] ?? ''; // alternative name for description sa DB
-    $location = $_POST['location'] ?? '';
-    $reported_by = $_POST['reporter_name'] ?? ''; //alternative name for reported by to sa DB
-    $role_assigned_to = $_POST['assigned_department'] ?? ''; // alternative name for role assigned to sa DB
-    $status = $_POST['status'] ?? ''; 
-    $remarks = $_POST['remarks'] ?? '';
-    $date = $_POST['date'] ?? '';
-    $time = $_POST['time'] ?? '';
-
-    $sql = "INSERT INTO incidents (description, location, reported_by, role_assigned_to, status, remarks, date, time)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssssss", $description, $location, $reported_by, $role_assigned_to, $status, $remarks, $date, $time);
-
-    if ($stmt->execute()) {
-        header("Location: add-incident.php");
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: ../login-page.php");
         exit;
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
-    $stmt->close();
-    $conn->close();
-}
+    // safe to use $_SESSION['user_id'] here
+    $user_id = $_SESSION['user_id'];
+
+    $user_sql = "SELECT name, role FROM users WHERE user_id = $user_id";
+    $user_result = mysqli_query($conn, $user_sql); 
+
+    if ($user_result && mysqli_num_rows($user_result) > 0) { 
+        $row = mysqli_fetch_assoc($user_result); 
+        $name = htmlspecialchars($row['name']); 
+        $role = htmlspecialchars($row['role']);
+    }
+
+    // Handle form submission
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $description = $_POST['incident_type'] ?? '';
+        $location = $_POST['location'] ?? '';
+        $reported_by = $user_id; 
+        $role_assigned_to = $_POST['assigned_department'] ?? '';
+        $status = $_POST['status'] ?? '';
+        $remarks = $_POST['remarks'] ?? '';
+        $date = $_POST['date'] ?? '';
+        $time = $_POST['time'] ?? '';
+
+        $sql = "INSERT INTO incidents (description, location, reported_by, role_assigned_to, status, remarks, date, time)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssssssss", $description, $location, $reported_by, $role_assigned_to, $status, $remarks, $date, $time);
+
+        if ($stmt->execute()) {
+            header("Location: add-incident.php");
+            exit;
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
+
 ?>
 
 <!-- SANTI -->
@@ -71,8 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <input
                                 type="text"
                                 name="reporter_name"
-                                placeholder="e.g Juan Cruz"
-                                required
+                                value="<?= $name ?>"
+                                readonly
                                 />
                             </div>
 

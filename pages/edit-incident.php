@@ -40,8 +40,8 @@
         $location = $_POST['location'];
         $date = $_POST['date'];
         $time = $_POST['time'];
-        $role_assigned_to = $_POST['assigned_department'];
-        $status = $_POST['status'];
+        $role_assigned_to = !empty($_POST['assigned_department']) ? $_POST['assigned_department'] : $role_assigned_to;
+        $status = !empty($_POST['status']) ? $_POST['status'] : $status;
         $remarks = $_POST['remarks'];
 
         $sql_update = "UPDATE incidents 
