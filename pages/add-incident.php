@@ -24,9 +24,9 @@
         $description = $_POST['incident_type'] ?? '';
         $location = $_POST['location'] ?? '';
         $reported_by = $user_id; 
-        $role_assigned_to = $_POST['assigned_department'] ?? '';
-        $status = $_POST['status'] ?? '';
-        $remarks = $_POST['remarks'] ?? '';
+        $role_assigned_to = $_POST['assigned_department'] ?? 'Operations';
+        $status = $_POST['status'] ?? 'Unresolved';
+        $remarks = $_POST['remarks'] ?? 'None';
         $date = $_POST['date'] ?? '';
         $time = $_POST['time'] ?? '';
 
@@ -82,7 +82,7 @@
                 
                 <h2>Incident Details</h2>
 
-                <!-- (REMOVE THIS PARENTHESIS IF REVERT) <form method="POST" action="add-incident-handler.php"> -->
+               
                     <form method="POST" action="">
                     <div class="incident-details">
                         <div class="incident-text-inputs">
