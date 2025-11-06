@@ -14,7 +14,6 @@
 
     include('../includes/db_connect.php');
     $user_id = $_SESSION['user_id'];
-    $message = '';
 
 
     if (isset($_GET['incidentId'])) {
@@ -26,12 +25,22 @@
             while ($row = mysqli_fetch_array($result)) {
                 $incident = $row['description'];
                 $location = $row['location'];
+                $reported_by_id = $row['reported_by'] ;
                 $date = $row['date'];
                 $time = $row['time'];
                 $role_assigned_to = $row['role_assigned_to'];
                 $status = $row['status'];
                 $remarks = $row['remarks'];
             }
+        }
+
+        //get reporter name 
+        $reported_by_sql = "SELECT name FROM users WHERE user_id = $reported_by_id" ; 
+        $reported_by_result = mysqli_query($conn, $reported_by_sql) ; 
+
+        if($reported_by_result && mysqli_num_rows($reported_by_result) > 0){ 
+            $row = mysqli_fetch_assoc($reported_by_result); 
+            $reporter_name = htmlspecialchars($row['name']);
         }
     }
 
@@ -96,9 +105,9 @@
                                     <input
                                     type="text"
                                     name="reporter_name"
-                                    value = "<?php echo $id; ?>"
+                                    value = "<?php echo $reporter_name; ?>"
                                     placeholder="e.g Juan Cruz"
-                                    required
+                                    readonly
                                     />
                                 </div>
 

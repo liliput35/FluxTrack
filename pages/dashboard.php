@@ -27,7 +27,7 @@
                     LEFT JOIN users ON incidents.reported_by = users.user_id 
                     ORDER BY incidents.incident_id DESC 
                     LIMIT 5" ;
-            $table_header = 'All' ;
+            $table_header = 'Recent' ;
         } else {
             $sql = "SELECT incidents.incident_id, incidents.description, users.name AS reporter_name, incidents.location, incidents.date, incidents.time, incidents.status, incidents.remarks  
                     FROM incidents
@@ -35,13 +35,13 @@
                     WHERE incidents.role_assigned_to = '$user_role' 
                     ORDER BY incidents.incident_id DESC 
                     LIMIT 5";
-            $table_header = $user_role ;
+            $table_header = "Recent $user_role" ;
         }
         
         $result_incidents = mysqli_query($conn, $sql);
 
 
-        
+        //FOR DASHBOARD CARD RECENT INCIDENT
         if ($user_role == 'Admin') {
             
             $recent_sql = "
@@ -91,33 +91,6 @@
         // Admin or role-based filtering
         $role_condition = ($user_role != 'Admin') ? "AND incidents.role_assigned_to = '$user_role'" : "";
 
-        // October total
-        $october_sql = "
-            SELECT COUNT(*) AS total_incidents
-            FROM incidents
-            WHERE MONTH(date) = 10 AND YEAR(date) = YEAR(CURDATE()) $role_condition
-        ";
-        $october_result = mysqli_query($conn, $october_sql);
-        $october_total = 0;
-        if ($october_result && mysqli_num_rows($october_result) > 0) {
-            $row = mysqli_fetch_assoc($october_result);
-            $october_total = (int)$row['total_incidents'];
-        }
-
-        // September total
-        $september_sql = "
-            SELECT COUNT(*) AS total_incidents
-            FROM incidents
-            WHERE MONTH(date) = 9 AND YEAR(date) = YEAR(CURDATE()) $role_condition
-        ";
-        $september_result = mysqli_query($conn, $september_sql);
-        $september_total = 0;
-        if ($september_result && mysqli_num_rows($september_result) > 0) {
-            $row = mysqli_fetch_assoc($september_result);
-            $september_total = (int)$row['total_incidents'];
-        }
-
-
         $peak_day_sql = "
             SELECT date, COUNT(*) AS incidents_count
             FROM incidents
@@ -136,6 +109,50 @@
             ];
         }
 
+        
+
+        //FOR DASHBOARD CARD PERCENTAGES
+        function getTotalIncidentsByMonth($conn, $month, $role_condition) {
+            $sql = "
+                SELECT COUNT(*) AS total_incidents
+                FROM incidents
+                WHERE MONTH(date) = $month AND YEAR(date) = YEAR(CURDATE()) $role_condition
+            ";
+            $result = mysqli_query($conn, $sql);
+            if ($result && mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                return (int)$row['total_incidents'];
+            }
+            return 0;
+        }
+
+        $october_total   = getTotalIncidentsByMonth($conn, 10, $role_condition);
+        $september_total = getTotalIncidentsByMonth($conn, 9, $role_condition);
+
+        
+        function getIncidentCount($conn, $statusCondition, $month, $role_condition) {
+            $sql = "SELECT COUNT(*) AS count FROM incidents 
+                    WHERE $statusCondition AND MONTH(date) = $month $role_condition;";
+            $result = mysqli_query($conn, $sql);
+            if ($result && mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                return (int)$row['count'];
+            }
+            return 0;
+        }
+
+        $resolved_incidents_this_month   = getIncidentCount($conn, "status = 'Resolved'", 10, $role_condition);
+        $resolved_incidents_last_month   = getIncidentCount($conn, "status = 'Resolved'", 9, $role_condition);
+
+
+        //PERCENTAGES
+        $this_resolved_pct   = $october_total > 0 ? round(($resolved_incidents_this_month / $october_total) * 100, 0) : 0;
+        $last_resolved_pct   = $september_total > 0 ? round(($resolved_incidents_last_month / $september_total) * 100, 0) : 0;
+
+        $improvement_pct = round($this_resolved_pct - $last_resolved_pct, 0); 
+        $improvement_style = $improvement_pct < 0 ? "red-text" : "green-text"; 
+
+       
     }
 ?>
 
@@ -199,7 +216,7 @@
                         <div class="total-incidents dash-card">
                             <h4>Total Incidents this Month</h4>
                             <h1 class="text-center"><?= $october_total ?></h1>
-                            <p class="red-text">Last Month: <?= $september_total ?></p>
+                            <p>Last Month: <span class="red-text"><?= $september_total ?></span></p>
                             <p class="total-labels">Most Reported</p>
                             <p>Wet Floor (28%)</p>
                             <p class="total-labels">Peak Day</p>
@@ -209,8 +226,8 @@
                         <div class="right-right-col">
                             <div class="percentage dash-card">
                                 <h4>Percentage of Resolved Incidents</h4>
-                                <h2>78%</h2>
-                                <p class="green-text">12% improvement vs September</p>
+                                <h2><?= $this_resolved_pct ?>%</h2>
+                                <p class="<?= $improvement_style?>"><?= $improvement_pct?>% vs September</p>
                             </div>
                             <div class="average-time dash-card">
                                 <h4>Average Response Time</h4>
