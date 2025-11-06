@@ -94,7 +94,7 @@
         $peak_day_sql = "
             SELECT date, COUNT(*) AS incidents_count
             FROM incidents
-            WHERE MONTH(date) = 10 AND YEAR(date) = YEAR(CURDATE()) $role_condition
+            WHERE MONTH(date) = 11 AND YEAR(date) = YEAR(CURDATE()) $role_condition
             GROUP BY date
             ORDER BY incidents_count DESC
             LIMIT 1
@@ -126,8 +126,8 @@
             return 0;
         }
 
-        $october_total   = getTotalIncidentsByMonth($conn, 10, $role_condition);
-        $september_total = getTotalIncidentsByMonth($conn, 9, $role_condition);
+        $november_total   = getTotalIncidentsByMonth($conn, 11, $role_condition);
+        $october_total = getTotalIncidentsByMonth($conn, 10, $role_condition);
 
         
         function getIncidentCount($conn, $statusCondition, $month, $role_condition) {
@@ -141,13 +141,13 @@
             return 0;
         }
 
-        $resolved_incidents_this_month   = getIncidentCount($conn, "status = 'Resolved'", 10, $role_condition);
-        $resolved_incidents_last_month   = getIncidentCount($conn, "status = 'Resolved'", 9, $role_condition);
+        $resolved_incidents_this_month   = getIncidentCount($conn, "status = 'Resolved'", 11, $role_condition);
+        $resolved_incidents_last_month   = getIncidentCount($conn, "status = 'Resolved'", 10, $role_condition);
 
 
         //PERCENTAGES
-        $this_resolved_pct   = $october_total > 0 ? round(($resolved_incidents_this_month / $october_total) * 100, 0) : 0;
-        $last_resolved_pct   = $september_total > 0 ? round(($resolved_incidents_last_month / $september_total) * 100, 0) : 0;
+        $this_resolved_pct   = $november_total > 0 ? round(($resolved_incidents_this_month / $november_total) * 100, 0) : 0;
+        $last_resolved_pct   = $october_total > 0 ? round(($resolved_incidents_last_month / $october_total) * 100, 0) : 0;
 
         $improvement_pct = round($this_resolved_pct - $last_resolved_pct, 0); 
         $improvement_style = $improvement_pct < 0 ? "red-text" : "green-text"; 
@@ -215,8 +215,8 @@
                     <div class="dash-card-right">
                         <div class="total-incidents dash-card">
                             <h4>Total Incidents this Month</h4>
-                            <h1 class="text-center"><?= $october_total ?></h1>
-                            <p>Last Month: <span class="red-text"><?= $september_total ?></span></p>
+                            <h1 class="text-center"><?= $november_total ?></h1>
+                            <p>Last Month: <span class="red-text"><?= $october_total ?></span></p>
                             <p class="total-labels">Most Reported</p>
                             <p>Wet Floor (28%)</p>
                             <p class="total-labels">Peak Day</p>
@@ -227,7 +227,7 @@
                             <div class="percentage dash-card">
                                 <h4>Percentage of Resolved Incidents</h4>
                                 <h2><?= $this_resolved_pct ?>%</h2>
-                                <p class="<?= $improvement_style?>"><?= $improvement_pct?>% vs September</p>
+                                <p class="<?= $improvement_style?>"><?= $improvement_pct?>% vs October</p>
                             </div>
                             <div class="average-time dash-card">
                                 <h4>Average Response Time</h4>
