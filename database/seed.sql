@@ -19,18 +19,19 @@ VALUES
 ('Broken Elevator Button', 'Elevator B', 9, 'Engineering', 'Unresolved', 'Awaiting spare parts', '2025-09-15', '14:20:00');
 
 
--- Insert updates related to the incident
-INSERT INTO incident_updates (updated_by, incident_id, updateText, status, timestamp)
+INSERT INTO incident_status_updates 
+(incident_id, updated_by, old_status, new_status, old_timestamp, updated_timestamp)
 VALUES
-(8, 1, 'Technician assigned for inspection', 'Ongoing', '2025-09-05 10:45:00'),
-(8, 1, 'Compressor replaced and cooling restored', 'Resolved', '2025-09-05 13:10:00'),
+-- Incident 1: Ongoing → Resolved
+(1, 8, 'Ongoing', 'Resolved', '2025-09-05 10:45:00', '2025-09-05 13:10:00'),
 
-(7, 2, 'Reported keycard missing, CCTV review started', 'Ongoing', '2025-09-08 09:00:00'),
+-- Incident 2: No status change (stays Ongoing), so no insert needed
 
-(9, 3, 'Cleaning team dispatched to East Wing', 'Ongoing', '2025-09-10 09:30:00'),
-(9, 3, 'All windows cleaned and inspected', 'Resolved', '2025-09-10 10:00:00'),
+-- Incident 3: Ongoing → Resolved
+(3, 9, 'Ongoing', 'Resolved', '2025-09-10 09:30:00', '2025-09-10 10:00:00'),
 
-(7, 4, 'Fire reported in kitchen area, extinguishers deployed', 'Ongoing', '2025-09-12 12:15:00'),
-(7, 4, 'Fire completely extinguished, safety verified', 'Resolved', '2025-09-12 12:30:00'),
+-- Incident 4: Ongoing → Resolved
+(4, 7, 'Ongoing', 'Resolved', '2025-09-12 12:15:00', '2025-09-12 12:30:00'),
 
-(9, 5, 'Button damage assessed, awaiting part delivery', 'Unresolved', '2025-09-15 14:40:00');
+-- Incident 5: Ongoing → Unresolved
+(5, 9, 'Ongoing', 'Unresolved', '2025-09-15 14:20:00', '2025-09-15 14:40:00');

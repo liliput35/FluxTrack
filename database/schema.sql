@@ -31,13 +31,14 @@ CREATE TABLE incidents (
 );
 
 -- INCIDENT UPDATES TABLE
-CREATE TABLE incident_updates (
-  update_id INT(10) AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE incident_status_updates (
+  id INT(10) AUTO_INCREMENT PRIMARY KEY,
+  incident_id INT(10) NOT NULL,
   updated_by INT(10),
-  incident_id INT(10),
-  updateText VARCHAR(255),
-  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-  status VARCHAR(255),
+  old_status VARCHAR(255) NOT NULL,
+  new_status VARCHAR(255) NOT NULL,
+  old_timestamp DATETIME NOT NULL,
+  updated_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (updated_by) REFERENCES users(user_id) ON DELETE SET NULL,
   FOREIGN KEY (incident_id) REFERENCES incidents(incident_id) ON DELETE CASCADE
 );
