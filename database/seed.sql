@@ -12,11 +12,11 @@ INSERT INTO `users` (`user_id`, `name`, `role`, `username`, `password`) VALUES
 -- Insert a sample incident
 INSERT INTO incidents (description, location, reported_by, role_assigned_to, status, remarks, date, time)
 VALUES
-('Air Conditioner Malfunction', 'Meeting Room 2', 7, 'Engineering', 'Resolved', 'Compressor replaced', '2025-10-05', '10:15:00'),
-('Lost Keycard', 'Reception', 8, 'Security', 'Ongoing', 'Verifying access logs', '2025-10-08', '08:30:00'),
-('Dirty Windows', 'East Wing', 9, 'Housekeeping', 'Resolved', 'Windows cleaned thoroughly', '2025-10-10', '09:45:00'),
-('Minor Fire Incident', 'Kitchen Area', 7, 'Operations', 'Resolved', 'Fire extinguished immediately', '2025-10-12', '12:10:00'),
-('Broken Elevator Button', 'Elevator B', 9, 'Engineering', 'Unresolved', 'Awaiting spare parts', '2025-10-15', '14:20:00');
+('Air Conditioner Malfunction', 'Meeting Room 2', 7, 'Engineering', 'Resolved', 'Compressor replaced', '2025-10-05', '13:10:00'),
+('Lost Keycard', 'Reception', 8, 'Security', 'Unresolved', 'Verifying access logs', '2025-10-08', '08:30:00'),
+('Dirty Windows', 'East Wing', 9, 'Housekeeping', 'Resolved', 'Windows cleaned thoroughly', '2025-10-10', '10:00:00'),
+('Minor Fire Incident', 'Kitchen Area', 7, 'Operations', 'Resolved', 'Fire extinguished immediately', '2025-10-12', '12:30:00'),
+('Broken Elevator Button', 'Elevator B', 9, 'Engineering', 'Resolved', 'Awaiting spare parts', '2025-10-15', '14:40:00');
 
 
 INSERT INTO incident_status_updates 
@@ -25,7 +25,6 @@ VALUES
 -- Incident 1: Ongoing → Resolved
 (1, 8, 'Ongoing', 'Resolved', '2025-10-05 10:45:00', '2025-10-05 13:10:00'),
 
--- Incident 2: No status change (stays Ongoing), so no insert needed
 
 -- Incident 3: Ongoing → Resolved
 (3, 9, 'Ongoing', 'Resolved', '2025-10-10 09:30:00', '2025-10-10 10:00:00'),
@@ -33,5 +32,5 @@ VALUES
 -- Incident 4: Ongoing → Resolved
 (4, 7, 'Ongoing', 'Resolved', '2025-10-12 12:15:00', '2025-10-12 12:30:00'),
 
--- Incident 5: Ongoing → Unresolved
-(5, 9, 'Ongoing', 'Unresolved', '2025-10-15 14:20:00', '2025-10-15 14:40:00');
+-- Incident 5: Ongoing → Resolved
+(5, 9, 'Ongoing', 'Resolved', '2025-10-15 14:20:00', '2025-10-15 14:40:00');

@@ -153,6 +153,40 @@
         $improvement_style = $improvement_pct < 0 ? "red-text" : "green-text"; 
 
        
+        //RESPONSE TIME DASHBOARD CARD 
+        $sql_response_time = "
+            SELECT 
+                AVG(TIMESTAMPDIFF(MINUTE, isu.old_timestamp, isu.updated_timestamp)) AS avg_minutes,
+                MIN(TIMESTAMPDIFF(MINUTE, isu.old_timestamp, isu.updated_timestamp)) AS fastest_minutes,
+                MAX(TIMESTAMPDIFF(MINUTE, isu.old_timestamp, isu.updated_timestamp)) AS slowest_minutes
+            FROM incident_status_updates AS isu
+            JOIN incidents ON isu.incident_id = incidents.incident_id
+            WHERE isu.old_status IN ('Unresolved', 'Ongoing')
+            AND isu.new_status = 'Resolved'
+            $role_condition
+        ";
+
+        $response_time_result = mysqli_query($conn, $sql_response_time); 
+
+        $response_times = ['avg' => 0, 'fastest' => 0, 'slowest' => 0];
+
+        if ($response_time_result && mysqli_num_rows($response_time_result) > 0) {
+            $row = mysqli_fetch_assoc($response_time_result);
+            $response_times['avg'] = (int)$row['avg_minutes'];
+            $response_times['fastest'] = (int)$row['fastest_minutes'];
+            $response_times['slowest'] = (int)$row['slowest_minutes'];
+        }
+
+        // Convert to hours & minutes for display
+        function format_minutes($minutes) {
+            $h = floor($minutes / 60);
+            $m = $minutes % 60;
+            return "{$h}h {$m}m";
+        }
+
+        $avg_time = format_minutes($response_times['avg']);
+        $fastest_time = format_minutes($response_times['fastest']);
+        $slowest_time = format_minutes($response_times['slowest']);
     }
 ?>
 
@@ -231,9 +265,9 @@
                             </div>
                             <div class="average-time dash-card">
                                 <h4>Average Response Time</h4>
-                                <h2>2h 15m</h2>
-                                <p>Fastest: <span class="green-text">35m</span></p>
-                                <p>Slowest: <span class="red-text">6h</span></p>
+                                <h2><?= $avg_time?></h2>
+                                <p>Fastest: <span class="green-text"><?= $fastest_time?></span></p>
+                                <p>Slowest: <span class="red-text"><?= $slowest_time?></span></p>
                             </div>
                         </div>
                         
