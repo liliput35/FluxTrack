@@ -45,6 +45,20 @@
     }
 
     if(isset($_POST['update'])) {
+        //CHECK FOR STATUS CHANGE 
+        if($status != $_POST['status'] && $_POST['status'] == 'Resolved'){ 
+            $old_status = $status ; 
+            $new_status = $_POST['status'] ; 
+
+            $sql_status = "INSERT INTO incident_status_updates 
+                            (incident_id, updated_by, old_status, new_status, old_timestamp, updated_timestamp) 
+                            VALUES ($id, $user_id, '$old_status', '$new_status', (CONCAT('$date', ' ', '$time')), NOW())" ;
+            
+            $sql_status_result = mysqli_query($conn, $sql_status) ; 
+
+        }
+
+
         $incident = $_POST['incident_type'];
         $location = $_POST['location'];
         $date = $_POST['date'];
