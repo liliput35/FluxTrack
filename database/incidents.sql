@@ -35,3 +35,19 @@ VALUES
 ('Data Connection Lost', 'CCTV Room', 7, 'Engineering', 'Ongoing', 'Checking network switch', '2025-11-04', '09:00:00'),
 ('Noise Complaint', 'Dormitory Wing', 8, 'Operations', 'Resolved', 'Residents warned', '2025-11-04', '09:45:00'),
 ('Broken Door Lock', 'Restroom 3F', 9, 'Engineering', 'Resolved', 'Lock replaced', '2025-11-04', '10:10:00');
+
+
+INSERT INTO incident_status_updates 
+(incident_id, updated_by, old_status, new_status, old_timestamp, updated_timestamp)
+VALUES
+(6, 8, 'Ongoing', 'Resolved', '2025-11-01 13:30:00', '2025-11-01 17:30:00'),
+(10, 9, 'Ongoing', 'Resolved', '2025-11-01 17:15:00', '2025-11-01 17:30:00'),
+(11, 9, 'Ongoing', 'Resolved', '2025-11-02 09:15:00', '2025-11-02 09:45:00'),
+(13, 9, 'Ongoing', 'Resolved', '2025-11-02 09:15:00', '2025-11-02 10:30:00'),
+(15, 8, 'Ongoing', 'Resolved', '2025-11-02 11:15:00', '2025-11-02 11:25:00'),
+(17, 9, 'Ongoing', 'Resolved', '2025-11-03 13:15:00', '2025-11-03 13:40:00'),
+(18, 9, 'Ongoing', 'Resolved', '2025-11-03 13:15:00', '2025-11-03 14:00:00'),
+(20, 7, 'Ongoing', 'Resolved', '2025-11-03 13:15:00', '2025-11-03 15:00:00'),
+(22, 7, 'Ongoing', 'Resolved', '2025-11-04 08:15:00', '2025-11-04 08:20:00'),
+(24, 7, 'Ongoing', 'Resolved', '2025-11-04 08:15:00', '2025-11-04 09:45:00'),
+(25, 7, 'Ongoing', 'Resolved', '2025-11-04 09:45:00', '2025-11-04 10:10:00') ;
