@@ -274,8 +274,7 @@
                             <h4>Total Incidents this Month</h4>
                             <h1 class="text-center"><?= $november_total ?></h1>
                             <p>Last Month: <span class="red-text"><?= $october_total ?></span></p>
-                            <p class="total-labels">Most Reported</p>
-                            <p>Wet Floor (28%)</p>
+                            
                             <p class="total-labels">Peak Day</p>
                             <p><?= $peak_day['date'] ?> (<?= $peak_day['count'] ?> Incidents)</p>
                         </div>
