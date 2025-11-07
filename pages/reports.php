@@ -39,6 +39,8 @@
         }
         
         $result_incidents = mysqli_query($conn, $sql);
+        $role_condition = ($user_role != 'Admin') ? "AND incidents.role_assigned_to = '$user_role'" : "";
+
 
         // Default: If there are incidents
         $oldest_date = '-';
