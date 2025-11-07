@@ -193,6 +193,31 @@
                             <button type="submit" value= "Update" name= "update" class="submit-btn">File Report</button>
                         </div>
                     </form>
+
+                    <button data-bs-toggle="modal" data-bs-target="#deleteIncidentModal" class="mt-3 submit-btn delete-btn">Delete Incident</button>
+
+
+                </div>
+
+                <!-- Delete Incident Modal -->
+                <div class="modal fade" id="deleteIncidentModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Delete <?= $incident?>?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <form method="POST" action="../includes/handleDeleteIncident.php">
+                                <input type="hidden" name="incident_id" value="<?= $id ?>">
+
+                                <div class="modal-footer">
+                                    <button type="submit" name="delete_incident" class="btn btn-danger">Delete</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
             </div>
