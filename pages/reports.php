@@ -40,6 +40,25 @@
         
         $result_incidents = mysqli_query($conn, $sql);
 
+        // Default: If there are incidents
+        $oldest_date = '-';
+        $newest_date = '-';
+
+        $date_range_sql = "
+            SELECT MIN(date) AS oldest, MAX(date) AS newest
+            FROM incidents
+            WHERE 1=1 $role_condition
+        ";
+
+        $date_result = mysqli_query($conn, $date_range_sql);
+        if ($date_result && mysqli_num_rows($date_result) > 0) {
+            $row = mysqli_fetch_assoc($date_result);
+            if ($row['oldest'] && $row['newest']) {
+                $oldest_date = date("j M", strtotime($row['oldest'])); // e.g., 1 Sept
+                $newest_date = date("j M Y", strtotime($row['newest'])); // e.g., 20 Sept 2025
+            }
+        }
+
     }
 ?>
 
@@ -72,10 +91,10 @@
 
                 <div class="table-search-group">
                     <div class="top-search">
-                        <input type="text" placeholder="Search..."> 
+                        <input type="text" id="searchInput" placeholder="Search..."> 
 
                         <div class="filter-date">
-                            <p>1 Sept - 20 Sept 2025</p>
+                            <p><?= $oldest_date ?> - <?= $newest_date ?></p>
                         </div>
                     </div>
 
@@ -151,6 +170,21 @@
     </div>
         
 </body>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const tableBody = document.querySelector(".incident-table tbody");
+
+    searchInput.addEventListener("keyup", function() {
+        let query = this.value;
+
+        fetch(`../includes/search_incidentsFull.php?q=` + encodeURIComponent(query))
+            .then(res => res.text())
+            .then(data => {
+                tableBody.innerHTML = data;
+            });
+    });
+</script>
 
 <script src="../assets/js/main.js"></script>
 
