@@ -70,8 +70,14 @@
             <input type="password" name="password" placeholder="Enter your password" required><br><br>
             
             <label for="role">Role</label> <br>
-            <input type="text" name="role" value="Staff" required><br><br>
-            
+            <select class="form-select" name="role" required>
+              <option value="Staff">Staff</option>
+              <option value="Housekeeping">Housekeeping</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Security">Security</option>
+              <option value="Operations">Operations</option>
+            </select>
+            <br><br>            
             <input type="submit" value="Create Account" class="submit-btn">
           </form>
 
