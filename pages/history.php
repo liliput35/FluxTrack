@@ -3,6 +3,71 @@
 <!-- sql select query from dashboard outputs only 5. dont limit it here output all -->
 <!-- output only if incident.status = 'Resolved' -->
 
+<!---- GIAN -->
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login-page.php");
+    exit;
+}
+
+include('../includes/db_connect.php');
+
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+
+    // Get user role
+    $sql = "SELECT role FROM users WHERE user_id = $user_id";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $user_role = htmlspecialchars($row['role']);
+    }
+
+    // Build query based on role, filtering for Resolved incidents
+    if ($user_role == 'Admin') {
+        $sql = "SELECT incidents.incident_id, incidents.description, users.name AS reporter_name, incidents.location, incidents.date, incidents.time, incidents.status, incidents.remarks 
+                FROM incidents
+                LEFT JOIN users ON incidents.reported_by = users.user_id 
+                WHERE incidents.status = 'Resolved'
+                ORDER BY incidents.incident_id DESC";
+        $table_header = 'All Resolved';
+    } else {
+        $sql = "SELECT incidents.incident_id, incidents.description, users.name AS reporter_name, incidents.location, incidents.date, incidents.time, incidents.status, incidents.remarks  
+                FROM incidents
+                LEFT JOIN users ON incidents.reported_by = users.user_id
+                WHERE incidents.role_assigned_to = '$user_role' 
+                AND incidents.status = 'Resolved'
+                ORDER BY incidents.incident_id DESC";
+        $table_header = "$user_role Resolved";
+    }
+
+    $result_incidents = mysqli_query($conn, $sql);
+    $role_condition = ($user_role != 'Admin') ? "AND incidents.role_assigned_to = '$user_role'" : "";
+
+    // Get date range of resolved incidents
+    $oldest_date = '-';
+    $newest_date = '-';
+
+    $date_range_sql = "
+        SELECT MIN(date) AS oldest, MAX(date) AS newest
+        FROM incidents
+        WHERE status = 'Resolved' $role_condition
+    ";
+
+    $date_result = mysqli_query($conn, $date_range_sql);
+    if ($date_result && mysqli_num_rows($date_result) > 0) {
+        $row = mysqli_fetch_assoc($date_result);
+        if ($row['oldest'] && $row['newest']) {
+            $oldest_date = date("j M", strtotime($row['oldest']));
+            $newest_date = date("j M Y", strtotime($row['newest']));
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,62 +124,28 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row" data-label="No">1</th>
-                        <td data-label="Incident Type">Equipment Failure</td>
-                        <td data-label="Reporter Name">Maria Santos</td>
-                        <td data-label="Date">Oct 8, 2025</td>
-                        <td data-label="Time">5:30 PM</td>
-                        <td data-label="Location">Main Stage</td>
-                        <td data-label="Status" class="resolved-incident"><span class="badge bg-success">Resolved</span></td>
-                        <td data-label="Remarks">Sound system reset successfully</td> 
-                        <td class="edit-cell"></td>   
-                    </tr>
-                    <tr>
-                        <th scope="row" data-label="No">2</th>
-                        <td data-label="Incident Type">Medical Emergency</td>
-                        <td data-label="Reporter Name">John Cruz</td>
-                        <td data-label="Date">Oct 8, 2025</td>
-                        <td data-label="Time">6:10 PM</td>
-                        <td data-label="Location">Gate 2</td>
-                        <td data-label="Status" class="resolved-incident"><span class="badge bg-success">Resolved</span></td>
-                        <td data-label="Remarks">First aid team on standby</td> 
-                        <td class="edit-cell"></td> 
-                    </tr>
-                    <tr>
-                        <th scope="row" data-label="No">3</th>
-                        <td data-label="Incident Type">Lost Item</td>
-                        <td data-label="Reporter Name">Liza Tan</td>
-                        <td data-label="Date">Oct 8, 2025</td>
-                        <td data-label="Time">6:45 PM</td>
-                        <td data-label="Location">Food Court</td>
-                        <td data-label="Status" class="resolved-incident"><span class="badge bg-success">Resolved</span></td>
-                        <td data-label="Remarks">Item found and returned</td>   
-                        <td class="edit-cell"></td> 
-                    </tr>
-                    <tr>
-                        <th scope="row" data-label="No">4</th>
-                        <td data-label="Incident Type">Crowd Disturbance</td>
-                        <td data-label="Reporter Name">Carlo Dela Cruz</td>
-                        <td data-label="Date">Oct 8, 2025</td>
-                        <td data-label="Time">7:05 PM</td>
-                        <td data-label="Location">Main Hall</td>
-                        <td data-label="Status" class="resolved-incident"><span class="badge bg-success">Resolved</span></td>
-                        <td data-label="Remarks">Security investigating</td>  
-                        <td class="edit-cell"></td>   
-                    </tr>
-                    <tr>
-                        <th scope="row" data-label="No">5</th>
-                        <td data-label="Incident Type">Slip and Fall</td>
-                        <td data-label="Reporter Name">Ana Mendoza</td>
-                        <td data-label="Date">Oct 8, 2025</td>
-                        <td data-label="Time">7:25 PM</td>
-                        <td data-label="Location">Restroom Area</td>
-                        <td data-label="Status" class="resolved-incident"><span class="badge bg-success">Resolved</span></td>
-                        <td data-label="Remarks">First aid administered</td> 
-                        <td class="edit-cell"></td>    
-                    </tr>
-                    </tbody>
+                        <?php
+                        if ($result_incidents && mysqli_num_rows($result_incidents) > 0) {
+                            $counter = 1;
+                            while ($incident = mysqli_fetch_assoc($result_incidents)) {
+                                echo "<tr>";
+                                echo "<th scope='row' data-label='No'>{$counter}</th>";
+                                echo "<td data-label='Incident Type'>" . htmlspecialchars($incident['description']) . "</td>";
+                                echo "<td data-label='Reporter Name'>" . htmlspecialchars($incident['reporter_name']) . "</td>";
+                                echo "<td data-label='Location'>" . htmlspecialchars($incident['location']) . "</td>";
+                                echo "<td data-label='Date'>" . date("M j, Y", strtotime($incident['date'])) . "</td>";
+                                echo "<td data-label='Time'>" . date("g:i A", strtotime($incident['time'])) . "</td>";
+                                echo "<td data-label='Status' class='resolved-incident'><span class='badge bg-success'>Resolved</span></td>";
+                                echo "<td data-label='Remarks'>" . htmlspecialchars($incident['remarks']) . "</td>";
+                                echo "<td class='edit-cell'></td>";
+                                echo "</tr>";
+                                $counter++;
+                            }
+                        } else {
+                            echo "<tr><td colspan='9'>No resolved incidents found.</td></tr>";
+                        }
+                        ?>
+                        </tbody>   
                 </table>
             </div>
 
