@@ -1,3 +1,15 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login-page.php");
+    exit;
+} else {
+    header("Location: pages/dashboard.php");
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +22,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <div class="row">
-        <?php include('./includes/navbar.php') ?>
-        <div class="col-sm-10">
-            <h2>Main area</h2>
-            <p>test chua was here test</p>
-        </div>
-    </div>
+    
 </body>
 
 <?php include('./includes/footer.php') ?>
