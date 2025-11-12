@@ -68,3 +68,15 @@ Place the folder in your XAMPP directory:<br>
 <tr><td>Lorenz Ciocon</td><td>Security</td><td>lorenz</td><td>1234</td></tr>
 <tr><td>Mia Chua</td><td>Housekeeping</td><td>mia</td><td>1234</td></tr>
 </table>
+
+<h2>👩‍💻 Developers</h2>
+
+<p>
+Developed by Santi Solutions<br><br>
+<b>Gabrielle Mia Chua</b><br>
+<b>Lorenz Ciocon</b><br>
+<b>Salvador Gomez</b><br>
+<b>Gian Javelosa</b><br>
+<b>Erika Jaud</b><br>
+<b>MJ Torres</b><br>
+</p>
