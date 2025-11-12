@@ -1,7 +1,6 @@
-<!-- GIAN -->
-<!-- GET REFERENCE FROM dashboard.php on how to connect db to page -->
-<!-- sql select query from dashboard outputs only 5. dont limit it here output all -->
-<!-- output only if incident.status = 'Resolved' -->
+<!-- JAVELOSA 11-12-2025 -->
+<!-- This page contains the table of all resolved incidents based on user role for READ functionality -->
+<!-- Code by: Gian Javelosa -->
 
 <!---- GIAN -->
 <?php
@@ -92,15 +91,15 @@ if (isset($_SESSION['user_id'])) {
             <div class="main-content-container w-90 mx-auto mx-md-0 w-md-100">
                 <p class="page-info"> <img src="../assets/images/blue-history-icon.png" alt=""><span>History  /  Incidents</span></p>
 
-                <h2 class="page-heading">Completed Reports</h2>
+                <h2 class="page-heading"><?= $table_header?> Reports</h2>
                 
 
                 <div class="table-search-group">
                     <div class="top-search">
-                        <input type="text" placeholder="Search..."> 
+                        <input type="text" placeholder="Search..." id="searchInput"> 
 
                         <div class="filter-date">
-                            <p>1 Sept - 20 Sept 2025</p>
+                            <p><?= $oldest_date ?> - <?= $newest_date ?></p>
                         </div>
                     </div>
 
@@ -128,7 +127,7 @@ if (isset($_SESSION['user_id'])) {
                         if ($result_incidents && mysqli_num_rows($result_incidents) > 0) {
                             $counter = 1;
                             while ($incident = mysqli_fetch_assoc($result_incidents)) {
-                                echo "<tr>";
+                                echo "<tr data-id='{$incident['incident_id']}'>";
                                 echo "<th scope='row' data-label='No'>{$counter}</th>";
                                 echo "<td data-label='Incident Type'>" . htmlspecialchars($incident['description']) . "</td>";
                                 echo "<td data-label='Reporter Name'>" . htmlspecialchars($incident['reporter_name']) . "</td>";
@@ -154,6 +153,21 @@ if (isset($_SESSION['user_id'])) {
     </div>
         
 </body>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const tableBody = document.querySelector(".incident-table tbody");
+
+    searchInput.addEventListener("keyup", function() {
+        let query = this.value;
+
+        fetch(`../includes/search_incidentsHistory.php?q=` + encodeURIComponent(query))
+            .then(res => res.text())
+            .then(data => {
+                tableBody.innerHTML = data;
+            });
+    });
+</script>
 
 <script src="../assets/js/main.js"></script>
 
