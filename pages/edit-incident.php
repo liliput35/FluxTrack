@@ -1,8 +1,7 @@
-<!-- MIA -->
-<!-- GET REFERENCE FROM account.php on how to connect db to page -->
-<!-- use sql UPDATE query -->
-<!-- base kay sir nga update book-->
-<!-- access this page through dashboard.php lng danay kay amo plng na na ka link-->
+<!-- CHUA 11-3-2025 -->
+<!-- This page contains the form for editing and incident and handling logic for UPDATING and DELETING incidents -->
+<!-- Code by: Gabrielle Mia Chua -->
+
 
 <?php
     session_start();
@@ -14,7 +13,19 @@
 
     include('../includes/db_connect.php');
     $user_id = $_SESSION['user_id'];
+    $user_role = '';
 
+    if(isset($_SESSION['user_id'])){ 
+        // Fetch user role
+        $sql = "SELECT role FROM users WHERE user_id = $user_id";
+        $result = mysqli_query($conn, $sql); 
+
+        if($result && mysqli_num_rows($result) > 0){ 
+            $row = mysqli_fetch_assoc($result); 
+            $user_role = htmlspecialchars($row['role']);
+        }
+    }
+    
 
     if (isset($_GET['incidentId'])) {
         $id = $_GET['incidentId'];
@@ -193,7 +204,7 @@
                             <button type="submit" value= "Update" name= "update" class="submit-btn">File Report</button>
                         </div>
                     </form>
-
+                <?php if ($user_role === 'Admin'): ?>
                     <button data-bs-toggle="modal" data-bs-target="#deleteIncidentModal" class="mt-3 submit-btn delete-btn">Delete Incident</button>
 
 
@@ -219,6 +230,7 @@
                         </div>
                     </div>
                 </div>
+                <?php endif; ?>
 
             </div>
         

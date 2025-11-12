@@ -1,6 +1,6 @@
-<!-- ERIKA -->
-<!-- GET REFERENCE FROM dashboard.php on how to connect db to page -->
-<!-- sql select query from dashboard outputs only 5. dont limit it here output all -->
+<!-- JAUD 11-3-2025 -->
+<!-- This page contains the table of all incidents based on user role for READ functionality -->
+<!-- Code by: Erika Jaud -->
  
 <?php
     session_start();

@@ -1,3 +1,7 @@
+<!-- TORRES 10-30-2025 -->
+<!-- This page contains the user account information and logic for UPDATING user details -->
+<!-- Code by: MJ Torres -->
+
 <?php // 10/30/25 Torres
     session_start();
 

@@ -1,3 +1,7 @@
+<!-- GOMEZ 11-1-2025 -->
+<!-- This page contains the form for adding an incident and logic for INSERTING new incident to db (CREATE) -->
+<!-- Code by: Salvador Gomez -->
+
 <?php
     session_start();
     include('../includes/db_connect.php');

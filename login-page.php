@@ -1,3 +1,7 @@
+<!-- Torres 10-29-2025 -->
+<!-- This page contains the login form and login logic -->
+<!-- Code by: MJ Torres -->
+
 <?php 
   session_start();
   include('./includes/db_connect.php');

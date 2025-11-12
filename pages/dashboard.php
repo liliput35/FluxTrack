@@ -1,3 +1,7 @@
+<!-- CIOCON 11-7-2025 -->
+<!-- This page contains the dashboard with table of recent incidents based on role and statistic cards -->
+<!-- Code by: Lorenz Nicolas Ciocon -->
+
 <?php
     session_start();
 

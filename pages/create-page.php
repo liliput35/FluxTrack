@@ -1,3 +1,7 @@
+<!-- TORRES 10-29-2025 -->
+<!-- This page contains the form for creating an account and handling logic for CREATING accounts -->
+<!-- Code by: MJ Torres -->
+
 <?php
   include('../includes/db_connect.php');
 
@@ -28,7 +32,6 @@
   }
 ?>
 
-<!-- CIOCON CREATE ACCOUNT  10-14 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
