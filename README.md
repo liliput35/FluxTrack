@@ -25,7 +25,7 @@ FluxTrack enables users to:
 <li><b>Incident Management:</b> Create, edit, and resolve incidents with details like location, date/time, and remarks.</li>
 <li><b>Dashboard Analytics:</b> Displays monthly totals, comparisons, and top incident types.</li>
 <li><b>Role-Based Access:</b> Admins see all reports; roles (Housekeeping, Security, etc.) see only assigned incidents.</li>
-<li><b>Real-Time Search:</b> AJAX-powered live search for instant filtering.</li>
+<li><b>Real-Time Search:</b> Live search for instant filtering.</li>
 <li><b>History Tracking:</b> “Resolved” incidents archive with date range summary.</li>
 <li><b>User Authentication:</b> Secure login and session handling.</li>
 </ul>
@@ -35,7 +35,7 @@ FluxTrack enables users to:
 <h2>🧱 Tech Stack</h2>
 
 <ul>
-<li><b>Frontend:</b> HTML5, CSS3, Bootstrap 5, JavaScript (AJAX)</li>
+<li><b>Frontend:</b> HTML5, CSS3, Bootstrap 5, JavaScript</li>
 <li><b>Backend:</b> PHP 8 (Procedural, MySQLi)</li>
 <li><b>Database:</b> MySQL</li>
 <li><b>Server:</b> Apache (XAMPP)</li>
