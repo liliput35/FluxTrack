@@ -56,10 +56,11 @@
     }
 
     if(isset($_POST['update'])) {
+         $new_status = isset($_POST['status']) && $_POST['status'] !== '' ? $_POST['status'] : $status;
+
         //CHECK FOR STATUS CHANGE 
-        if($status != $_POST['status'] && $_POST['status'] == 'Resolved'){ 
+        if($status != $new_status && $new_status == 'Resolved'){ 
             $old_status = $status ; 
-            $new_status = $_POST['status'] ; 
 
             $sql_status = "INSERT INTO incident_status_updates 
                             (incident_id, updated_by, old_status, new_status, old_timestamp, updated_timestamp) 
