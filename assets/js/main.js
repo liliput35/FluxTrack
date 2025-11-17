@@ -7,11 +7,11 @@ document.getElementById('toggleEditMode').addEventListener('click', function () 
         const rowId = row.getAttribute('data-id');
         const editCell = row.querySelector('.edit-cell');
 
-        // Only add if not already injected
+        
         if (!editCell.querySelector('a')) {
             const link = document.createElement('a');
             link.href = `edit-incident.php?incidentId=${rowId}`;
-            link.innerHTML = '<img src="../assets/images/edit-icon.png"/>'; // or your icon
+            link.innerHTML = '<img src="../assets/images/edit-icon.png"/>'; 
             link.style.textDecoration = 'none';
             editCell.appendChild(link);
         }
